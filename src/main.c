@@ -5,13 +5,13 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Tue Feb 23 10:27:54 2016 Samuel
-** Last update Tue Feb 23 10:38:55 2016 Samuel
+** Last update Tue Feb 23 18:51:47 2016 Samuel
 */
 
 #include "my.h"
 
 int	main()
 {
-
+  test_time(5);
   return (0);
 }
