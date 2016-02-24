@@ -5,10 +5,11 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Tue Feb 23 18:46:00 2016 Samuel
-** Last update Tue Feb 23 19:58:10 2016 Samuel
+** Last update Wed Feb 24 11:40:57 2016 Lucas Villeneuve
 */
 
 #include "my.h"
+#include <unistd.h>
 
 void		test_time(int mins)
 {

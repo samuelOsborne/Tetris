@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Tue Feb 23 10:31:40 2016 Samuel
-** Last update Tue Feb 23 20:01:41 2016 Samuel
+** Last update Wed Feb 24 13:11:51 2016 Lucas Villeneuve
 */
 
 #ifndef MY_H_
@@ -14,10 +14,11 @@
 #ifndef _BSD_SOURCE
 # define _BSD_SOURCE
 
-#include <ncurses.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
+typedef struct		s_all
+{
+  int			level;
+  
+}			t_all;
 
 void	test_time(int);
 int	my_printf(const char *format, ...);

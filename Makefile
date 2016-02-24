@@ -5,36 +5,41 @@
 ## Login   <samuel@epitech.net>
 ## 
 ## Started on  Tue Feb 23 10:20:42 2016 Samuel
-## Last update Wed Feb 24 09:31:18 2016 Samuel
+## Last update Wed Feb 24 11:53:29 2016 Lucas Villeneuve
 ##
 
 NAME	=	tetris
 
-SRC	=	src/main.c 	\
-		src/test_time.c	
+SRC	=	src/main.c 		\
+		src/test_time.c		\
+		src/check_winsz.c	\
+		src/map.c		
 
 OBJ	=	$(SRC:.c=.o)
 
 RM	=	rm -f
 
-LIB	=	-lmy -L./lib -lncurses
+LDFLAGS	=	-lmy -L./lib -lncurses
 
 CC	=	gcc
 
 CFLAGS	=	-Iinclude
+
 CFLAGS	+=	-W -Wall -Wextra -ansi -pedantic
 
-$(NAME)	:	$(OBJ)
-		$(CC) -o $(NAME) $(OBJ) $(CFLAGS) $(LIB)
+$(NAME):	$(OBJ)
+			$(CC) -o $(NAME) $(OBJ) $(LDFLAGS)
 
-all	:	$(NAME)
+all:		$(NAME)
 
-clean	:	
-		$(RM) $(OBJ)
 
-fclean	:	clean
-		$(RM) $(NAME)
+clean:	
+			$(RM) $(OBJ)
 
-re	:	fclean all
+fclean:		clean
+			$(RM) $(NAME)
 
-.PHONY	:	all clean fclean re
+re:		fclean all
+
+
+.PHONY:		all clean fclean re
