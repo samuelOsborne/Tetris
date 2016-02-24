@@ -5,7 +5,7 @@
 ## Login   <samuel@epitech.net>
 ## 
 ## Started on  Tue Feb 23 10:20:42 2016 Samuel
-## Last update Tue Feb 23 19:27:34 2016 Samuel
+## Last update Wed Feb 24 09:31:18 2016 Samuel
 ##
 
 NAME	=	tetris
@@ -17,7 +17,7 @@ OBJ	=	$(SRC:.c=.o)
 
 RM	=	rm -f
 
-LIB	=	-lmy -L./lib
+LIB	=	-lmy -L./lib -lncurses
 
 CC	=	gcc
 
@@ -25,7 +25,7 @@ CFLAGS	=	-Iinclude
 CFLAGS	+=	-W -Wall -Wextra -ansi -pedantic
 
 $(NAME)	:	$(OBJ)
-		$(CC) -o $(NAME) $(OBJ) $(LIB) $(CFLAGS)
+		$(CC) -o $(NAME) $(OBJ) $(CFLAGS) $(LIB)
 
 all	:	$(NAME)
 

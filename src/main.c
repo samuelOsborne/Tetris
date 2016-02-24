@@ -5,13 +5,24 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Tue Feb 23 10:27:54 2016 Samuel
-** Last update Tue Feb 23 18:51:47 2016 Samuel
+** Last update Wed Feb 24 09:32:26 2016 Samuel
 */
 
 #include "my.h"
 
+void	init_screen()
+{
+  initscr();
+  keypad(stdscr, TRUE);
+  noecho();
+  refresh();
+  getch();
+  endwin();
+}
+
 int	main()
 {
-  test_time(5);
+  test_time(5); /*tu passes a test time le nmbr de mins */
+  init_screen();
   return (0);
 }

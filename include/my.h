@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Tue Feb 23 10:31:40 2016 Samuel
-** Last update Tue Feb 23 19:19:41 2016 Samuel
+** Last update Tue Feb 23 20:01:41 2016 Samuel
 */
 
 #ifndef MY_H_
