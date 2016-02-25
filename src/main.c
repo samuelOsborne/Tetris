@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Tue Feb 23 10:27:54 2016 Samuel
-** Last update Thu Feb 25 18:53:02 2016 Lucas Villeneuve
+** Last update Thu Feb 25 22:40:59 2016 Lucas Villeneuve
 */
 
 #include "my.h"
@@ -13,43 +13,29 @@
 #include <sys/ioctl.h>
 #include <stdlib.h>
 
-void			init_screen()
+void			init_screen(t_tetris *tetris, char **map)
 {
   SCREEN		*window;
   struct winsize	size;
-  int			ch;
-  int			i;
-
+ 
   window = newterm("xterm", stderr, stdin);
   set_term(window);
   clear();
   noecho();
   keypad(stdscr, TRUE);
+  curs_set(false);
+  cbreak();
+  timeout(100);
   ioctl(0, TIOCGWINSZ, &size);
   check_winsz(&size);
-  display_map();
-  ch = 0;
-  i = 2;
-  while ((ch = getch()) != 32)
-    {
-      usleep(500000);
-      refresh();
-      display_map();
-      mvprintw(i++, 12, "*");
-      if (i == 24)
-	{
-	  endwin();
-	  exit(1);
-	}
-    }
+  fall_letter(map, tetris);
   endwin();
 }
 
-void	start_debug_mode(char *file)
+void	start_debug_mode()
 {
   my_putstr("*** DEBUG MODE ***\n");
   my_putstr("Press a key to start Tetris\n");
-  check_tetrimino(file);
   getchar();
 }
 
@@ -69,9 +55,11 @@ void	print_help()
   my_putstr("  -d --debug\t\tDebug mode\n");
 }
 
-int	main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
-  int	i;
+  int		i;
+  t_tetris	tetris;
+  char		**map;
 
   i = 1;
   /* test_time(5); /\*tu passes a test time le nmbr de mins *\/ */
@@ -80,10 +68,12 @@ int	main(int argc, char **argv)
       if (my_strcmp(argv[i], "--help") == 0)
 	  print_help();
       if (my_strcmp(argv[i], "--debug") == 0 || my_strcmp(argv[i], "-d") == 0)
-	start_debug_mode(argv[1]);
+	start_debug_mode();
       i++;
     }
-  create_map();
-  /* init_screen(); */
+  tetris.map_width = 10;
+  tetris.map_height = 20;
+  map = create_map(&tetris);
+  init_screen(&tetris, map);
   return (0);
 }

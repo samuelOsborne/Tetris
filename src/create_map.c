@@ -5,18 +5,18 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Thu Feb 25 18:10:30 2016 Lucas Villeneuve
-** Last update Thu Feb 25 19:15:54 2016 Lucas Villeneuve
+** Last update Thu Feb 25 22:04:23 2016 Lucas Villeneuve
 */
 
 #include <stdlib.h>
 #include "my.h"
 
-void	make_tb(char **map, t_tetris tetris, int j)
+void	make_tb(char **map, t_tetris *tetris, int j)
 {
   int	i;
 
   i = 0;
-  while (i < tetris.map_width + 2)
+  while (i < tetris->map_width + 2)
     {
       map[j][i] = '-';
       i++;
@@ -24,17 +24,17 @@ void	make_tb(char **map, t_tetris tetris, int j)
   map[j][i] = 0;
 }
 
-void	make_borders(char **map, t_tetris tetris)
+void	make_borders(char **map, t_tetris *tetris)
 {
   int	i;
   int	j;
 
   j = 1;
-  while (j < tetris.map_height)
+  while (j < tetris->map_height)
     {
       i = 0;
       map[j][i++] = '|';
-      while (i <= tetris.map_width)
+      while (i <= tetris->map_width)
 	map[j][i++] = ' ';
       map[j][i++] = '|';
       map[j][i] = 0;
@@ -42,40 +42,36 @@ void	make_borders(char **map, t_tetris tetris)
     }
 }
 
-void	display_map_tetris(char **map, t_tetris tetris)
+void	display_map_tetris(char **map, t_tetris *tetris)
 {
   int	i;
 
   i = 0;
-  while (i < tetris.map_height + 2)
+  while (i < tetris->map_height + 2)
     {
-      my_putstr(map[i]);
-      my_putchar('\n');
+      mvprintw(i + 2, 10, map[i]);
       i++;
     }
 }
 
-char	**create_map()
+char	**create_map(t_tetris *tetris)
 {
   char	**map;
-  t_tetris	tetris;
-  int i;
+  int	i;
 
-  tetris.map_width = 10;
-  tetris.map_height = 20;
-  map = malloc(sizeof(char *) * tetris.map_height + 3);
+  map = malloc(sizeof(char *) * tetris->map_height + 3);
   if (map == NULL)
     return (NULL);
   i = 0;
-  while (i < tetris.map_height + 3)
+  while (i < tetris->map_height + 3)
     {
-      map[i] = malloc(tetris.map_width + 3);
+      map[i] = malloc(tetris->map_width + 3);
       if (map[i] == NULL)
 	return (NULL);
       i++;
     }
   make_tb(map, tetris, 0);
-  make_tb(map, tetris, tetris.map_height);
+  make_tb(map, tetris, tetris->map_height);
   make_borders(map, tetris);
-  display_map_tetris(map, tetris);
+  return (map);
 }
