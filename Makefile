@@ -5,7 +5,7 @@
 ## Login   <samuel@epitech.net>
 ## 
 ## Started on  Tue Feb 23 10:20:42 2016 Samuel
-## Last update Wed Feb 24 14:02:19 2016 Lucas Villeneuve
+## Last update Thu Feb 25 18:53:38 2016 Lucas Villeneuve
 ##
 
 NAME	=	tetris
@@ -15,6 +15,8 @@ SRC	=	src/main.c 		\
 		src/check_winsz.c	\
 		src/map.c		\
 		src/my_strcmp.c		\
+		src/check_tetrimino.c	\
+		src/moving_object.c
 
 OBJ	=	$(SRC:.c=.o)
 

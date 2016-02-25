@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Tue Feb 23 10:31:40 2016 Samuel
-** Last update Wed Feb 24 13:11:51 2016 Lucas Villeneuve
+** Last update Thu Feb 25 18:54:19 2016 Lucas Villeneuve
 */
 
 #ifndef MY_H_
@@ -14,11 +14,20 @@
 #ifndef _BSD_SOURCE
 # define _BSD_SOURCE
 
-typedef struct		s_all
+typedef struct		s_tetris
 {
   int			level;
-  
-}			t_all;
+  int			map_width;
+  int			map_height;
+}			t_tetris;
+
+typedef struct		s_tetrimino
+{
+  char			*name;
+  int			width;
+  int			height;
+  int			color;
+}			t_tetrimino;
 
 void	test_time(int);
 int	my_printf(const char *format, ...);

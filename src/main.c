@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Tue Feb 23 10:27:54 2016 Samuel
-** Last update Wed Feb 24 14:04:09 2016 Lucas Villeneuve
+** Last update Thu Feb 25 18:53:02 2016 Lucas Villeneuve
 */
 
 #include "my.h"
@@ -30,7 +30,7 @@ void			init_screen()
   display_map();
   ch = 0;
   i = 2;
-  while ((ch = getch) != 32)
+  while ((ch = getch()) != 32)
     {
       usleep(500000);
       refresh();
@@ -43,6 +43,14 @@ void			init_screen()
 	}
     }
   endwin();
+}
+
+void	start_debug_mode(char *file)
+{
+  my_putstr("*** DEBUG MODE ***\n");
+  my_putstr("Press a key to start Tetris\n");
+  check_tetrimino(file);
+  getchar();
 }
 
 void	print_help()
@@ -71,8 +79,11 @@ int	main(int argc, char **argv)
     {
       if (my_strcmp(argv[i], "--help") == 0)
 	  print_help();
+      if (my_strcmp(argv[i], "--debug") == 0 || my_strcmp(argv[i], "-d") == 0)
+	start_debug_mode(argv[1]);
       i++;
     }
+  create_map();
   /* init_screen(); */
   return (0);
 }
