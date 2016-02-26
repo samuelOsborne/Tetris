@@ -5,7 +5,7 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Thu Feb 25 21:15:34 2016 Lucas Villeneuve
-** Last update Fri Feb 26 10:23:33 2016 Samuel
+** Last update Fri Feb 26 10:50:33 2016 Lucas Villeneuve
 */
 
 #include <unistd.h>
@@ -44,7 +44,7 @@ void	delete_line(char **map, t_tetris *tetris)
       if (count == tetris->map_width)
 	{
 	  j = 1;
-	  while (j < tetris->map_width)
+	  while (j <= tetris->map_width)
 	    map[i][j++] = ' ';
 	}
       i++;
@@ -78,9 +78,9 @@ void	fall_letter(char **map, t_tetris *tetris)
       	}
       delete_line(map, tetris);
       ch = getch();
-      if (ch == 260 && j > 1)
+      if (ch == 260 && j > 1 && map[i][j - 1] != 'O')
 	j--;
-      if (ch == 261 && j < tetris->map_width)
+      if (ch == 261 && j < tetris->map_width && map[i][j + 1] != '0')
 	j++;
       refresh();
       display_map_tetris(map, tetris);
