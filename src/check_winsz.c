@@ -5,12 +5,13 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Wed Feb 24 11:34:54 2016 Lucas Villeneuve
-** Last update Wed Feb 24 11:40:33 2016 Lucas Villeneuve
+** Last update Fri Feb 26 10:47:01 2016 Samuel
 */
 
 #include "my.h"
 #include <sys/ioctl.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 int	check_winsz(struct winsize *size)
 {

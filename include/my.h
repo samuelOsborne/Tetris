@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Tue Feb 23 10:31:40 2016 Samuel
-** Last update Thu Feb 25 18:54:19 2016 Lucas Villeneuve
+** Last update Fri Feb 26 10:50:49 2016 Samuel
 */
 
 #ifndef MY_H_
@@ -29,8 +29,14 @@ typedef struct		s_tetrimino
   int			color;
 }			t_tetrimino;
 
+void	display_map_tetris(char **map, t_tetris *tetris);
 void	test_time(int);
 int	my_printf(const char *format, ...);
+void	fall_letter(char **map, t_tetris *tetris);
+void	my_putstr(char *str);
+int	my_strcmp(char *s1, char *s2);
+char	**create_map(t_tetris *tetris);
+
 
 #endif /* !BSD_SOURCE */
 #endif /* !MY_H_ */
