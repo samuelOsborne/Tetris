@@ -5,13 +5,13 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Tue Feb 23 10:27:54 2016 Samuel
-** Last update Thu Feb 25 22:40:59 2016 Lucas Villeneuve
+** Last update Thu Mar  3 14:43:08 2016 Lucas Villeneuve
 */
 
-#include "my.h"
 #include <ncurses.h>
 #include <sys/ioctl.h>
 #include <stdlib.h>
+#include "my.h"
 
 void			init_screen(t_tetris *tetris, char **map)
 {
@@ -30,13 +30,6 @@ void			init_screen(t_tetris *tetris, char **map)
   check_winsz(&size);
   fall_letter(map, tetris);
   endwin();
-}
-
-void	start_debug_mode()
-{
-  my_putstr("*** DEBUG MODE ***\n");
-  my_putstr("Press a key to start Tetris\n");
-  getchar();
 }
 
 void	print_help()
@@ -68,7 +61,7 @@ int		main(int argc, char **argv)
       if (my_strcmp(argv[i], "--help") == 0)
 	  print_help();
       if (my_strcmp(argv[i], "--debug") == 0 || my_strcmp(argv[i], "-d") == 0)
-	start_debug_mode();
+	debug_mode();
       i++;
     }
   tetris.map_width = 10;

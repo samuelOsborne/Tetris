@@ -5,10 +5,11 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Thu Feb 25 18:10:30 2016 Lucas Villeneuve
-** Last update Thu Feb 25 22:04:23 2016 Lucas Villeneuve
+** Last update Thu Mar  3 14:35:19 2016 Lucas Villeneuve
 */
 
 #include <stdlib.h>
+#include <ncurses.h>
 #include "my.h"
 
 void	make_tb(char **map, t_tetris *tetris, int j)

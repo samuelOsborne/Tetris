@@ -5,7 +5,7 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Wed Feb 24 14:31:47 2016 Lucas Villeneuve
-** Last update Fri Feb 26 10:30:34 2016 Samuel
+** Last update Tue Mar  1 12:53:25 2016 Lucas Villeneuve
 */
 
 #include "my.h"
@@ -24,8 +24,6 @@ char	*take_name(char *name, char *str)
   i = 0;
   while (name[i] && name[i] != '.')
     i++;
-  /* if (name[i] == 0) */
-  /*   return (NULL); */
   j = 0;
   while ((name[i] == str[j]) && str[j] != 0 && name[i] != 0)
     {
@@ -45,11 +43,6 @@ char	*take_name(char *name, char *str)
   return (NULL);
 }
 
-/* int	get_value() */
-/* { */
-  
-/* } */
-
 t_tetrimino	*check_tetrimino(char *file)
 {
   int		fd;
@@ -66,10 +59,4 @@ t_tetrimino	*check_tetrimino(char *file)
     return (1);
   my_printf("Tetriminos : Name %s : ", tetrimino.name);
   free(tetrimino.name);
-  /* if ((tmp = get_next_line(fd)) == NULL) */
-  /*   { */
-  /*     my_putstr("Error file\n"); */
-  /*     return (NULL); */
-  /*   } */
-  /* get_value(tmp, &tetrimino); */
 }
