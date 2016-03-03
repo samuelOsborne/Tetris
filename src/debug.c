@@ -5,23 +5,22 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Mon Feb 29 16:12:27 2016 Lucas Villeneuve
-** Last update Tue Mar  1 13:01:52 2016 Lucas Villeneuve
+** Last update Thu Mar  3 15:09:14 2016 Lucas Villeneuve
 */
 
 #include <stdlib.h>
 #include <dirent.h>
 #include "my.h"
 
-void		debug_mode()
+void		debug_mode(t_tetris *tetris)
 {
   DIR		*dir;
   struct dirent	*ent;
   int		i;
-  t_tetris	tetris;
 
   my_putstr("*** DEBUG MODE ***\n");
 
-  my_printf("Size : %d*%d\n", tetris.map_height, tetris.map_width);
+  my_printf("Size : %d*%d\n", tetris->map_height, tetris->map_width);
 
   i = 0;
   if ((dir = opendir("tetrimino")) != NULL)

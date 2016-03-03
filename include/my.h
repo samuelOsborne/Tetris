@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Tue Feb 23 10:31:40 2016 Samuel
-** Last update Thu Mar  3 14:43:27 2016 Lucas Villeneuve
+** Last update Thu Mar  3 15:08:03 2016 Lucas Villeneuve
 */
 
 #ifndef MY_H_
@@ -32,10 +32,10 @@ typedef struct		s_tetrimino
   char			**piece;
 }			t_tetrimino;
 
-void	debug_mode();
 void	test_time(int);
 void	load_tetrimino();
 void	my_putstr(char *str);
+void	debug_mode(t_tetris *tetris);
 void	fall_letter(char **map, t_tetris *tetris);
 void	display_map_tetris(char **map, t_tetris *tetris);
 int	my_strlen(char *str);

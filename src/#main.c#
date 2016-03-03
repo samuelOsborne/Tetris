@@ -62,7 +62,7 @@ int		main(int argc, char **argv)
   while (i < argc)
     {
       if (my_strcmp(argv[i], "--help") == 0)
-	  print_help();
+	print_help();
       if (my_strcmp(argv[i], "--debug") == 0 || my_strcmp(argv[i], "-d") == 0)
 	debug_mode(tetris);
       i++;
