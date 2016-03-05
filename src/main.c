@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Tue Feb 23 10:27:54 2016 Samuel
-** Last update Thu Mar  3 14:43:08 2016 Lucas Villeneuve
+** Last update Sat Mar  5 23:20:07 2016 Samuel
 */
 
 #include <ncurses.h>
@@ -13,7 +13,7 @@
 #include <stdlib.h>
 #include "my.h"
 
-void			init_screen(t_tetris *tetris, char **map)
+void			init_screen(t_tetris *tetris, char **map, t_keybinds *keybinds)
 {
   SCREEN		*window;
   struct winsize	size;
@@ -28,6 +28,7 @@ void			init_screen(t_tetris *tetris, char **map)
   timeout(100);
   ioctl(0, TIOCGWINSZ, &size);
   check_winsz(&size);
+  menu(keybinds);
   fall_letter(map, tetris);
   endwin();
 }
@@ -52,21 +53,24 @@ int		main(int argc, char **argv)
 {
   int		i;
   t_tetris	tetris;
+  t_keybinds	keybinds;
   char		**map;
 
   i = 1;
-  /* test_time(5); /\*tu passes a test time le nmbr de mins *\/ */
+  init_keybinds(&keybinds);
+  if (argc != 1)
+    compare_args_for_keybind(argc, argv, &keybinds);
   while (i < argc)
     {
       if (my_strcmp(argv[i], "--help") == 0)
 	  print_help();
       if (my_strcmp(argv[i], "--debug") == 0 || my_strcmp(argv[i], "-d") == 0)
-	debug_mode();
+	debug_mode(&keybinds);
       i++;
     }
-  tetris.map_width = 10;
-  tetris.map_height = 20;
+  tetris.map_width = keybinds.col;
+  tetris.map_height = keybinds.row;
   map = create_map(&tetris);
-  init_screen(&tetris, map);
+  init_screen(&tetris, map, &keybinds);
   return (0);
 }

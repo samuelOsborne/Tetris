@@ -5,21 +5,12 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Wed Jan 13 14:32:52 2016 Lucas Villeneuve
-** Last update Wed Feb 10 17:18:23 2016 Lucas Villeneuve
+** Last update Sat Mar  5 23:05:25 2016 Samuel
 */
 
-#include "get_next_line.h"
 #include <unistd.h>
-
-int	my_strlen(char *str)
-{
-  int	i;
-
-  i = 0;
-  while (str[i] != 0)
-    i++;
-  return (i);
-}
+#include "my.h"
+#include "get_next_line.h"
 
 void	my_memset(char *str, int size)
 {

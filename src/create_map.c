@@ -5,7 +5,7 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Thu Feb 25 18:10:30 2016 Lucas Villeneuve
-** Last update Thu Mar  3 14:35:19 2016 Lucas Villeneuve
+** Last update Sat Mar  5 23:26:34 2016 Samuel
 */
 
 #include <stdlib.h>
@@ -50,7 +50,7 @@ void	display_map_tetris(char **map, t_tetris *tetris)
   i = 0;
   while (i < tetris->map_height + 2)
     {
-      mvprintw(i + 2, 10, map[i]);
+      mvprintw(i + 2, 35, map[i]);
       i++;
     }
 }

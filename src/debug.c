@@ -5,25 +5,36 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Mon Feb 29 16:12:27 2016 Lucas Villeneuve
-** Last update Tue Mar  1 13:01:52 2016 Lucas Villeneuve
+** Last update Sat Mar  5 23:23:42 2016 Samuel
 */
 
 #include <stdlib.h>
 #include <dirent.h>
+#include <ncurses.h>
 #include "my.h"
 
-void		debug_mode()
+void		print_the_keys(t_keybinds *keybinds)
+{
+  my_printf("Key Left : %d\n", keybinds->kl);
+  my_printf("Key Right : %d\n", keybinds->kr);
+  my_printf("Key Turn : %d\n", keybinds->kt);
+  my_printf("Key Drop : %d\n", keybinds->kd);
+  my_printf("Key Quit : %d\n", keybinds->kq);
+  my_printf("Key Pause : %d\n", keybinds->kp);
+  (keybinds->next == 0) ? my_printf("Next : No\n") : my_printf("Next : Yes\n");
+  my_printf("Level : %d\n", keybinds->level);
+  my_printf("Size : %d*%d\n", keybinds->col, keybinds->row);
+}
+
+void		debug_mode(t_keybinds *keybinds)
 {
   DIR		*dir;
   struct dirent	*ent;
   int		i;
-  t_tetris	tetris;
-
-  my_putstr("*** DEBUG MODE ***\n");
-
-  my_printf("Size : %d*%d\n", tetris.map_height, tetris.map_width);
 
   i = 0;
+  my_putstr("*** DEBUG MODE ***\n");
+  print_the_keys(keybinds);
   if ((dir = opendir("tetrimino")) != NULL)
     {
       while ((ent = readdir(dir)) != NULL)
@@ -33,11 +44,8 @@ void		debug_mode()
     }
   else
     my_putstr("Error\n");
-
   my_printf("Tetriminos : %d\n", i);
-
   load_tetrimino();
-
   my_putstr("Press a key to start Tetris\n");
   getchar();
 }
