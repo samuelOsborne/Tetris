@@ -5,24 +5,26 @@
 ## Login   <samuel@epitech.net>
 ## 
 ## Started on  Tue Feb 23 10:20:42 2016 Samuel
-## Last update Thu Mar  3 14:27:29 2016 Lucas Villeneuve
+## Last update Tue Mar  8 15:18:11 2016 Lucas Villeneuve
 ##
 
 NAME	=	tetris
 
 SRC	=	src/main.c 		\
-		src/test_time.c		\
-		src/check_winsz.c	\
-		src/my_strcmp.c		\
 		src/create_map.c	\
-		src/objects.c		\
+		src/check_winsz.c	\
+		src/test_time.c		\
 		src/debug.c		\
 		src/load_tetriminos.c	\
+		src/fall_tetrimino.c	\
+		src/loop_game.c		\
 		src/get_next_line.c	\
 		src/epurstr.c		\
 		src/my_getnbr.c		\
 		src/my_strcpy.c		\
+		src/my_strcmp.c		\
 		src/my_strcat.c		\
+		src/rotate_tetrimino.c	\
 
 OBJ	=	$(SRC:.c=.o)
 

@@ -5,7 +5,7 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Tue Mar  1 12:39:58 2016 Lucas Villeneuve
-** Last update Thu Mar  3 14:34:32 2016 Lucas Villeneuve
+** Last update Thu Mar 10 16:46:07 2016 Lucas Villeneuve
 */
 
 #include <stdlib.h>
@@ -97,7 +97,7 @@ int	get_vars_tetrimino(t_tetrimino *tetrimino, int fd)
   return (0);
 }
 
-int	get_tetrimino(t_tetrimino *tetrimino, int fd)
+int	get_tetrimino(t_tetrimino *tetrimino, int fd, bool debug)
 {
   char	*str;
   int	i;
@@ -114,54 +114,89 @@ int	get_tetrimino(t_tetrimino *tetrimino, int fd)
   i = 0;
   while ((str = get_next_line(fd)) != NULL)
     {
+      if (my_strlen(str) > tetrimino->width)
+	{
+	  if (debug == true)
+	    my_putstr("Error: Width of the piece is wrong\n");
+	  return (1);
+	}
+      if (i >= tetrimino->height)
+	{
+	  if (debug == true)
+	    my_putstr("Error: Height of the piece is wrong\n");
+	  return (1);
+	}
       my_strcpy(tetrimino->piece[i], str);
-      my_printf("%s\n", tetrimino->piece[i]);
       i++;
     }
+  i = 0;
+  if (debug == true)
+    while (i < tetrimino->height)
+      my_printf("%s\n", tetrimino->piece[i++]);
   return (0);
 }
 
-t_tetrimino	*check_tetrimino(char *file)
+int	check_tetrimino(char *file, t_tetrimino *tetrimino, bool debug)
 {
-  int		fd;
-  char		*tmp;
-  t_tetrimino	*tetrimino;
+  int	fd;
+  char	*tmp;
 
-  if ((tetrimino = malloc(sizeof(t_tetrimino))) == NULL)
-    return (NULL);
-  tetrimino->name = take_name(file, ".tetrimino");
-  if (tetrimino->name == NULL)
+  if ((tetrimino->name = take_name(file, ".tetrimino")) == NULL)
     {
       my_putstr("Error name\n");
-      return (NULL);
+      return (1);
     }
-  if ((tmp = malloc(my_strlen(file) + my_strlen("tetrimino/") + 1))
+  if ((tmp = malloc(my_strlen(file) + my_strlen("tetriminos/") + 1))
       == NULL)
-    return (NULL);
-  my_strcpy(tmp, "tetrimino/");
+    return (1);
+  my_strcpy(tmp, "tetriminos/");
   file = my_strcat(tmp, file);
   if ((fd = open(file, O_RDONLY)) == -1)
-    return (NULL);
+    return (1);
   get_vars_tetrimino(tetrimino, fd);
-  my_printf("Tetriminos : Name %s : Size %d*%d : Color %d :\n", tetrimino->name,
-	    tetrimino->width, tetrimino->height, tetrimino->color);
-  get_tetrimino(tetrimino, fd);
+  if ((tetrimino->color > 7 || tetrimino->color < 0) || tetrimino->height < 1
+      || tetrimino->width < 1)
+    {
+      if (debug == true)
+	my_printf("Tetriminos : Name %s : Error\n", tetrimino->name);
+      return (1);
+    }
+  if (debug == true)
+    my_printf("Tetriminos : Name %s : Size %d*%d : Color %d :\n",
+	      tetrimino->name, tetrimino->width, tetrimino->height,
+	      tetrimino->color);
+  if (get_tetrimino(tetrimino, fd, debug) == 1)
+    return (1);
   close(fd);
-  return (tetrimino);
+  return (0);
 }
 
-void		load_tetrimino()
+t_tetrimino	*load_tetrimino(int nb, bool debug, t_tetris *tetris)
 {
   struct dirent	*ent;
   DIR		*dir;
+  t_tetrimino	*tetrimino;
+  int		i;
 
-  if ((dir = opendir("tetrimino")) != NULL)
+  if ((tetrimino = malloc(sizeof(t_tetrimino) * nb)) == NULL)
+    return (NULL);
+  if ((dir = opendir("tetriminos")) != NULL)
     {
+      i = 0;
       while ((ent = readdir(dir)) != NULL)
 	if (ent->d_name[0] != '.')
-	  check_tetrimino(ent->d_name);
+	  if (check_tetrimino(ent->d_name, &tetrimino[i], debug) == 0)
+	    i++;
+      tetris->nb = i;
+      if (i < 1)
+	{
+	  if (debug == true)
+	    my_putstr("Not enough tetriminos\n");
+	  exit(1);
+	}
       closedir(dir);
     }
-  else
+  else if (debug == true)
     my_putstr("Error\n");
+  return (tetrimino);
 }

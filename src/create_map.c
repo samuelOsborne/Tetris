@@ -5,7 +5,7 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Thu Feb 25 18:10:30 2016 Lucas Villeneuve
-** Last update Thu Mar  3 14:35:19 2016 Lucas Villeneuve
+** Last update Wed Mar  9 14:47:54 2016 Lucas Villeneuve
 */
 
 #include <stdlib.h>
@@ -46,11 +46,26 @@ void	make_borders(char **map, t_tetris *tetris)
 void	display_map_tetris(char **map, t_tetris *tetris)
 {
   int	i;
+  int	x;
 
   i = 0;
-  while (i < tetris->map_height + 2)
+  while (i < tetris->map_height + 1)
     {
-      mvprintw(i + 2, 10, map[i]);
+      x = 0;
+      while (x < tetris->map_width + 2)
+      	{
+	  if (map[i][x] != '|' && map[i][x] != '-' && map[i][x] != ' '
+	      && map[i][x] != 0)
+	    {
+	      init_pair(map[i][x] - 47, map[i][x] - 48, NULL);
+	      attron(COLOR_PAIR(map[i][x] - 47));
+	      mvprintw(i + 2, x + 10, "*");
+	      attroff(COLOR_PAIR(map[i][x] - 47));
+	    }
+	  else
+	    mvprintw(i + 2, x + 10, "%c", map[i][x]);
+	  x++;
+	}
       i++;
     }
 }

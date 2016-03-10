@@ -5,7 +5,7 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Thu Feb 25 21:15:34 2016 Lucas Villeneuve
-** Last update Fri Feb 26 10:50:33 2016 Lucas Villeneuve
+** Last update Fri Mar  4 10:25:11 2016 Lucas Villeneuve
 */
 
 #include <unistd.h>
@@ -61,7 +61,7 @@ void	fall_letter(char **map, t_tetris *tetris)
   i = 1;
   j = 6;
   count = 0;
-  while (count < 30)
+  while (count < 50)
     {
       if (map[i + 1][j] == '-' || map[i + 1][j] == 'O')
       	{

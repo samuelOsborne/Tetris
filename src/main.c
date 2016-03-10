@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Tue Feb 23 10:27:54 2016 Samuel
-** Last update Thu Mar  3 15:07:02 2016 Lucas Villeneuve
+** Last update Tue Mar  8 15:18:41 2016 Lucas Villeneuve
 */
 
 #include <ncurses.h>
@@ -13,7 +13,7 @@
 #include <stdlib.h>
 #include "my.h"
 
-void			init_screen(t_tetris *tetris, char **map)
+void			init_screen(t_tetris *tetris, char **map, t_tetrimino *tetrimino)
 {
   SCREEN		*window;
   struct winsize	size;
@@ -22,19 +22,19 @@ void			init_screen(t_tetris *tetris, char **map)
   set_term(window);
   clear();
   noecho();
-  keypad(stdscr, TRUE);
+  start_color();
+  nodelay(stdscr, true);
+  keypad(stdscr, true);
   curs_set(false);
-  cbreak();
-  timeout(100);
   ioctl(0, TIOCGWINSZ, &size);
   check_winsz(&size);
-  fall_letter(map, tetris);
+  loop_game(map, tetris, tetrimino);
   endwin();
 }
 
-void	print_help()
+void	print_help(char *str)
 {
-  my_putstr("Usage: ./tetris [options]\nOptions:\n");
+  my_printf("Usage: %s [options]\nOptions:\n", str);
   my_putstr("  --help\t\tDisplay this help\n");
   my_putstr("  -l --level={num}\tStart Tetris at level num\n");
   my_putstr("  -kl --key-left={K}\tMove tetrimino on LEFT with key K\n");
@@ -53,21 +53,31 @@ int		main(int argc, char **argv)
   int		i;
   t_tetris	*tetris;
   char		**map;
+  t_tetrimino	*tetrimino;
+  bool		debug;
 
   if ((tetris = malloc(sizeof(t_tetris))) == NULL)
     return (1);
-  tetris->map_width = 10;
-  tetris->map_height = 20;
+  tetris->map_width = 8;
+  tetris->map_height = 30;
+  debug = false;
   i = 1;
   while (i < argc)
     {
       if (my_strcmp(argv[i], "--help") == 0)
-	  print_help();
+	{
+	  print_help(argv[0]);
+	  return (1);
+	}
       if (my_strcmp(argv[i], "--debug") == 0 || my_strcmp(argv[i], "-d") == 0)
-	debug_mode(tetris);
+	debug = true;
       i++;
     }
+  if (debug == true)
+    tetrimino = debug_mode(tetris);
+  else
+    tetrimino = ini_load(tetris);
   map = create_map(tetris);
-  init_screen(tetris, map);
+  init_screen(tetris, map, tetrimino);
   return (0);
 }
