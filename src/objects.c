@@ -5,7 +5,7 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Thu Feb 25 21:15:34 2016 Lucas Villeneuve
-** Last update Fri Mar  4 10:25:11 2016 Lucas Villeneuve
+** Last update Fri Mar 11 09:40:01 2016 Samuel
 */
 
 #include <unistd.h>
@@ -51,7 +51,28 @@ void	delete_line(char **map, t_tetris *tetris)
     }
 }
 
-void	fall_letter(char **map, t_tetris *tetris)
+int	mode_non_canonique(int i)
+{
+  static struct termios oldT;
+  static struct termios newT;
+
+  if (i == 0)
+    {
+      if (ioctl(0, TCGETS, &oldT) < 0)
+        return (1);
+      if (ioctl(0, TCGETS, &newT) < 0)
+        return (1);
+      newT.c_lflag &= ~ECHO;
+      newT.c_lflag &= ~ICANON;
+      newT.c_cc[VMIN] = 1;
+      newT.c_cc[VTIME] = 0; /* ms */
+      ioctl(0, TCSETS, &newT);
+    }
+  if (i == 1)
+    ioctl(0, TCSETS, &oldT);
+}
+
+void	fall_letter(char **map, t_tetris *tetris, t_keybinds *keybinds)
 {
   int	i;
   int	j;
@@ -77,6 +98,7 @@ void	fall_letter(char **map, t_tetris *tetris)
       	  i++;
       	}
       delete_line(map, tetris);
+      menu(keybinds, score);
       ch = getch();
       if (ch == 260 && j > 1 && map[i][j - 1] != 'O')
 	j--;

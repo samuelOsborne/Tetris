@@ -5,21 +5,45 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Tue Feb 23 10:27:54 2016 Samuel
-** Last update Tue Mar  8 15:18:41 2016 Lucas Villeneuve
+** Last update Fri Mar 11 09:27:42 2016 Samuel
 */
 
 #include <ncurses.h>
+#include <unistd.h>
 #include <sys/ioctl.h>
 #include <stdlib.h>
 #include "my.h"
 
-void			init_screen(t_tetris *tetris, char **map, t_tetrimino *tetrimino)
+int			get_input(t_keybinds *keybinds, int j)
+{
+  char			buffer[5];
+
+  buffer[0] = '\0';
+  buffer[1] = '\0';
+  buffer[2] = '\0';
+  buffer[3] = '\0';
+  buffer[4] = '\0';
+  buffer[5] = '\0';
+  if ((read(0, buffer, 5)) == 0)
+    return (1);
+  if ((my_strcmp(buffer, keybinds->kl)) == 0 && j > 1)
+    j--;
+  else if ((my_strcmp(buffer, keybinds->kr)) == 0)
+    j++;
+  return (j);
+}
+
+void			init_screen(t_tetris *tetris, char **map, t_tetrimino *tetrimino, t_keybinds *keybinds)
 {
   SCREEN		*window;
   struct winsize	size;
+  /* t_highscore		score; */
  
+  tetris->high_score = 0;
+  tetris->score = 0;
   window = newterm("xterm", stderr, stdin);
   set_term(window);
+  initscr();
   clear();
   noecho();
   start_color();
@@ -28,7 +52,7 @@ void			init_screen(t_tetris *tetris, char **map, t_tetrimino *tetrimino)
   curs_set(false);
   ioctl(0, TIOCGWINSZ, &size);
   check_winsz(&size);
-  loop_game(map, tetris, tetrimino);
+  loop_game(map, tetris, tetrimino, keybinds);
   endwin();
 }
 
@@ -55,11 +79,15 @@ int		main(int argc, char **argv)
   char		**map;
   t_tetrimino	*tetrimino;
   bool		debug;
+  t_keybinds	keybinds;
 
+  init_keybinds(&keybinds);
+  if (argc != 1)
+    compare_args_for_keybind(argc, argv, &keybinds);
   if ((tetris = malloc(sizeof(t_tetris))) == NULL)
     return (1);
-  tetris->map_width = 8;
-  tetris->map_height = 30;
+  tetris->map_width = keybinds.col;
+  tetris->map_height = keybinds.row;
   debug = false;
   i = 1;
   while (i < argc)
@@ -74,10 +102,10 @@ int		main(int argc, char **argv)
       i++;
     }
   if (debug == true)
-    tetrimino = debug_mode(tetris);
+    tetrimino = debug_mode(tetris, &keybinds);
   else
     tetrimino = ini_load(tetris);
   map = create_map(tetris);
-  init_screen(tetris, map, tetrimino);
+  init_screen(tetris, map, tetrimino, &keybinds);
   return (0);
 }

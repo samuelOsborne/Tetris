@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Tue Feb 23 10:31:40 2016 Samuel
-** Last update Thu Mar 10 16:24:48 2016 Lucas Villeneuve
+** Last update Fri Mar 11 09:41:20 2016 Samuel
 */
 
 #ifndef MY_H_
@@ -17,12 +17,31 @@
 #include <sys/ioctl.h>
 #include <stdbool.h>
 
+typedef struct          s_keybinds
+{
+  char			*kl;
+  char			*kr;
+  char			*kt;
+  char			*kd;
+  char			*kq;
+  char			*kp;
+  int			next;
+  int			level;
+  int			size;
+  int			row;
+  int			col;
+  int			debug;
+}			t_keybinds;
+
 typedef struct		s_tetris
 {
   int			level;
   int			map_width;
   int			map_height;
   int			nb;
+  int			high_score;
+  int			score;
+  int			lines;
 }			t_tetris;
 
 typedef struct		s_tetrimino
@@ -34,24 +53,49 @@ typedef struct		s_tetrimino
   char			**piece;
 }			t_tetrimino;
 
+void    check_and_print_keysl(t_keybinds *keybinds);
+void    check_and_print_keysr(t_keybinds *keybinds);
+void    check_and_print_keyst(t_keybinds *keybinds);
+void    check_and_print_keysd(t_keybinds *keybinds);
+void    check_and_print_keysq(t_keybinds *keybinds);
+void    check_and_print_keysp(t_keybinds *keybinds);
+void    put_debug(t_keybinds *keybinds, char *word);
+void    put_left(t_keybinds *keybinds, char *word);
+void    put_right(t_keybinds *keybinds, char *word);
+void    put_turn(t_keybinds *keybinds, char *word);
+void    put_drop(t_keybinds *keybinds, char *word);
+void    put_quit(t_keybinds *keybinds, char *word);
+void    put_pause(t_keybinds *keybinds, char* word);
+void    put_next(t_keybinds *keybinds, char *word);
+void    put_level(t_keybinds *keybinds, char *word);
 void	test_time(int);
+void	print_lines(t_keybinds *keybinds, t_tetris *tetris);
 void	my_putstr(char *str);
-void	fall_letter(char **map, t_tetris *tetris);
+void	fall_letter(char **map, t_tetris *tetris, t_keybinds *keybinds);
 void	display_map_tetris(char **map, t_tetris *tetris);
-void	loop_game(char **map, t_tetris *tetris, t_tetrimino *tetrimino);
+void	init_keybinds(t_keybinds *keybinds);
+void	menu(t_keybinds *keybinds, t_tetris *tetris);
+void	loop_game(char **map, t_tetris *tetris, t_tetrimino *tetrimino, t_keybinds *keybinds);
+void	init_screen(t_tetris *tetris, char **map, t_tetrimino *tetrimino, t_keybinds *keybinds);
+int	check_if_term_exists(char **ae);
+int	compare_args_for_keybinds(int ac, char **av, t_keybinds *keybinds);
+int	map_size_detect(char *a, t_keybinds *keybinds);
+int	get_key_bind(char a, t_keybinds *keybinds, char *word);
 int	my_strlen(char *str);
 int	my_getnbr(char *str);
 int	my_strcmp(char *s1, char *s2);
 int	check_winsz(struct winsize *size);
 int	my_printf(const char *format, ...);
+int	map_size_col(char *tmp, char *a, t_keybinds *keybinds, int pos);
 int	collision(char **map, t_tetrimino *tetrimino, int x, int y);
-int	fall_tetrimino(char **map, t_tetris *tetris, t_tetrimino tetrimino);
+int	fall_tetrimino(char **map, t_tetris *tetris, t_tetrimino tetrimino, t_keybinds *keybinds);
 char	*epurstr(char *str);
 char    *my_strcpy(char *dest, char *src);
 char	*my_strcat(char *dest, char *src);
 char	**create_map(t_tetris *tetris);
+char	*put_void(char *a);
 t_tetrimino	*load_tetrimino(int nb, bool debug, t_tetris *tetris);
-t_tetrimino	*debug_mode(t_tetris *tetris);
+t_tetrimino	*debug_mode(t_tetris *tetris, t_keybinds *keybinds);
 t_tetrimino	ini_rotate_tetrimino(t_tetrimino tetrimino, char **map, int x, int y);
 
 #endif /* !BSD_SOURCE */

@@ -1,0 +1,9 @@
+make the parser of commands work for a char *
+
+make the pointer table work for char * and the struct take char * not int
+
+for the commands, do a strcmp of the struct char * and what the buffer from the read has
+
+if theyre the same do the command
+
+arrows are ^[0A for exemple

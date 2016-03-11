@@ -5,7 +5,7 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Sat Mar  5 15:00:46 2016 Lucas Villeneuve
-** Last update Thu Mar 10 10:37:48 2016 Lucas Villeneuve
+** Last update Fri Mar 11 09:31:04 2016 Samuel
 */
 
 #include <ncurses.h>
@@ -18,7 +18,7 @@ void	end_game()
   while (1);
 }
 
-void	loop_game(char **map, t_tetris *tetris, t_tetrimino *tetrimino)
+void	loop_game(char **map, t_tetris *tetris, t_tetrimino *tetrimino, t_keybinds *keybinds)
 {
   int	nb;
 
@@ -26,7 +26,7 @@ void	loop_game(char **map, t_tetris *tetris, t_tetrimino *tetrimino)
     {
       srand(time(NULL));
       nb = rand() % tetris->nb;
-      if (fall_tetrimino(map, tetris, tetrimino[nb]) == 2)
+      if (fall_tetrimino(map, tetris, tetrimino[nb], keybinds) == 2)
 	{
 	  end_game();
 	  return ;

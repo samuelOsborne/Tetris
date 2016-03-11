@@ -5,7 +5,7 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Fri Mar  4 10:28:56 2016 Lucas Villeneuve
-** Last update Wed Mar  9 14:47:42 2016 Lucas Villeneuve
+** Last update Fri Mar 11 09:31:25 2016 Samuel
 */
 
 #include <stdlib.h>
@@ -117,7 +117,7 @@ void	delete_line(char **map, t_tetris *tetris)
     }
 }
 
-int	fall_tetrimino(char **map, t_tetris *tetris, t_tetrimino tetrimino)
+int	fall_tetrimino(char **map, t_tetris *tetris, t_tetrimino tetrimino, t_keybinds *keybinds) /* maybe pass to display the size of the map from keybinds instead of char **map? */
 {
   int	x;
   int	y;
@@ -128,6 +128,7 @@ int	fall_tetrimino(char **map, t_tetris *tetris, t_tetrimino tetrimino)
   x = 5;
   while (1)
     {
+      menu(keybinds, tetris);
       ch = getch();
       if ((col = collision(map, &tetrimino, x, y + 1)) == 0)
 	y++;
