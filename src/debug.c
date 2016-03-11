@@ -5,9 +5,10 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Mon Feb 29 16:12:27 2016 Lucas Villeneuve
-** Last update Thu Mar 10 19:58:21 2016 Samuel
+** Last update Fri Mar 11 14:00:25 2016 Samuel
 */
 
+#include <termios.h>
 #include <stdlib.h>
 #include <dirent.h>
 #include "my.h"
@@ -20,12 +21,12 @@ void		print_the_keys(t_keybinds *keybinds)
   /* check_and_print_keysd(keybinds); */
   /* check_and_print_keysq(keybinds); */
   /* check_and_print_keysp(keybinds); */
-  my_printf("%s\n", keybinds->kl);
-  my_printf("%s\n", keybinds->kr);
-  my_printf("%s\n", keybinds->kt);
-  my_printf("%s\n", keybinds->kd);
-  my_printf("%s\n", keybinds->kq);
-  my_printf("%s\n", keybinds->kp);
+  my_printf("Key Left : %s\n", keybinds->kl);
+  my_printf("Key Right : %s\n", keybinds->kr);
+  my_printf("Key Turn : %s\n", keybinds->kt);
+  my_printf("Key Drop : %s\n", keybinds->kd);
+  my_printf("Key Quit : %s\n", keybinds->kq);
+  my_printf("Key Pause :%s\n", keybinds->kp);
   (keybinds->next == 0) ? my_printf("Next : No\n") : my_printf("Next : Yes\n");
   my_printf("Level : %d\n", keybinds->level);
   my_printf("Size : %d*%d\n", keybinds->row, keybinds->col);
@@ -54,11 +55,34 @@ t_tetrimino	*ini_load(t_tetris *tetris)
   return (tetrimino);
 }
 
+int		mode_non_canonique2(int i)
+{
+  static struct termios oldT;
+  static struct termios newT;
+
+  if (i == 0)
+    {
+      if (ioctl(0, TCGETS, &oldT) < 0)
+        return (1);
+      if (ioctl(0, TCGETS, &newT) < 0)
+        return (1);
+      newT.c_lflag &= ~ECHO;
+      newT.c_lflag &= ~ICANON;
+      newT.c_cc[VMIN] = 1;
+      ioctl(0, TCSETS, &newT);
+    }
+  if (i == 1)
+    if ((ioctl(0, TCSETS, &oldT)) < 0)
+      return (1);
+  return (0);
+}
+
 t_tetrimino	*debug_mode(t_tetris *tetris, t_keybinds *keybinds)
 {
   DIR		*dir;
   struct dirent	*ent;
   int		i;
+  char		buffer[1];
   t_tetrimino	*tetrimino;
 
   my_putstr("*** DEBUG MODE ***\n");
@@ -85,6 +109,9 @@ t_tetrimino	*debug_mode(t_tetris *tetris, t_keybinds *keybinds)
     }
   tetrimino = load_tetrimino(i, true, tetris);
   my_putstr("Press a key to start Tetris\n");
-  getchar();
+  mode_non_canonique2(0);
+  if (read(0, buffer, 1) == -1)
+    return (1);
+  mode_non_canonique2(1);
   return (tetrimino);
 }

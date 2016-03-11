@@ -5,7 +5,7 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Thu Feb 25 21:15:34 2016 Lucas Villeneuve
-** Last update Fri Mar 11 09:40:01 2016 Samuel
+** Last update Fri Mar 11 11:53:36 2016 Samuel
 */
 
 #include <unistd.h>
@@ -99,7 +99,7 @@ void	fall_letter(char **map, t_tetris *tetris, t_keybinds *keybinds)
       	}
       delete_line(map, tetris);
       menu(keybinds, score);
-      ch = getch();
+      /*ch = getch();*/
       if (ch == 260 && j > 1 && map[i][j - 1] != 'O')
 	j--;
       if (ch == 261 && j < tetris->map_width && map[i][j + 1] != '0')

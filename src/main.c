@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Tue Feb 23 10:27:54 2016 Samuel
-** Last update Fri Mar 11 09:27:42 2016 Samuel
+** Last update Fri Mar 11 13:39:40 2016 Samuel
 */
 
 #include <ncurses.h>
@@ -41,13 +41,14 @@ void			init_screen(t_tetris *tetris, char **map, t_tetrimino *tetrimino, t_keybi
  
   tetris->high_score = 0;
   tetris->score = 0;
-  window = newterm("xterm", stderr, stdin);
-  set_term(window);
   initscr();
+  window = newterm(NULL, stdout, stdin);
+  mode_non_canonique(0);
+  /* set_term(window); */
   clear();
   noecho();
   start_color();
-  nodelay(stdscr, true);
+  /* nodelay(stdscr, true); */
   keypad(stdscr, true);
   curs_set(false);
   ioctl(0, TIOCGWINSZ, &size);
