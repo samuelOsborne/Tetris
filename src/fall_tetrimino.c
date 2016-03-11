@@ -5,7 +5,7 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Fri Mar  4 10:28:56 2016 Lucas Villeneuve
-** Last update Fri Mar 11 14:08:59 2016 Samuel
+** Last update Fri Mar 11 14:12:02 2016 Samuel
 */
 
 #include <stdlib.h>
@@ -174,7 +174,7 @@ int	fall_tetrimino(char **map, t_tetris *tetris, t_tetrimino tetrimino, t_keybin
 	x++;
       else if (my_strcmp(buffer, keybinds->kt) == 0 && collision(map, &tetrimino, x - 1, y) == 0)
 	tetrimino = ini_rotate_tetrimino(tetrimino, map, x, y);
-      else if (my_strcmp(buffer, keybinds->kq) == 0)
+      else if (my_strcmp(buffer, keybinds->kq) == 0) /*apûis sur q pour des barres */
 	exit(0);
       else if (my_strcmp(buffer, keybinds->kd) == 0)
 	{
