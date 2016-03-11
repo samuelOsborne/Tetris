@@ -5,22 +5,24 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Wed Feb 24 11:34:54 2016 Lucas Villeneuve
-** Last update Thu Mar  3 14:42:04 2016 Lucas Villeneuve
+** Last update Fri Mar 11 16:04:27 2016 Lucas Villeneuve
 */
 
 #include <stdlib.h>
 #include <sys/ioctl.h>
 #include "my.h"
 
-int	check_winsz(struct winsize *size)
+int	check_winsz(struct winsize *size, t_tetris *tetris)
 {
-  if (size->ws_row <= 30)
+  if (size->ws_row <= tetris->map_height)
     {
+      printf("ROW %d %d", size->ws_row, size->ws_col);
       my_putstr("Error your terminal is not big enough to print the tetris\n");
       exit(1);
     }
-  else if (size->ws_col <= 20)
+  else if (size->ws_col <= 25 + tetris->map_width)
     {
+      printf("COL %d %d", size->ws_row, size->ws_col);
       my_putstr("Error your terminal is not big enough to print the tetris\n");
       exit(1);
     }

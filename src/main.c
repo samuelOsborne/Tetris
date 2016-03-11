@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Tue Feb 23 10:27:54 2016 Samuel
-** Last update Fri Mar 11 13:39:40 2016 Samuel
+** Last update Fri Mar 11 15:58:51 2016 Lucas Villeneuve
 */
 
 #include <ncurses.h>
@@ -52,7 +52,7 @@ void			init_screen(t_tetris *tetris, char **map, t_tetrimino *tetrimino, t_keybi
   keypad(stdscr, true);
   curs_set(false);
   ioctl(0, TIOCGWINSZ, &size);
-  check_winsz(&size);
+  check_winsz(&size, tetris);
   loop_game(map, tetris, tetrimino, keybinds);
   endwin();
 }
@@ -98,7 +98,7 @@ int		main(int argc, char **argv)
 	  print_help(argv[0]);
 	  return (1);
 	}
-      if (my_strcmp(argv[i], "--debug") == 0 || my_strcmp(argv[i], "-d") == 0)
+      if (my_strcmp(argv[i], "--debug") == 0 ||my_strcmp(argv[i], "-d") == 0)
 	debug = true;
       i++;
     }

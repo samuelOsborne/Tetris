@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Tue Feb 23 10:31:40 2016 Samuel
-** Last update Fri Mar 11 09:41:20 2016 Samuel
+** Last update Fri Mar 11 15:59:22 2016 Lucas Villeneuve
 */
 
 #ifndef MY_H_
@@ -84,7 +84,7 @@ int	get_key_bind(char a, t_keybinds *keybinds, char *word);
 int	my_strlen(char *str);
 int	my_getnbr(char *str);
 int	my_strcmp(char *s1, char *s2);
-int	check_winsz(struct winsize *size);
+int	check_winsz(struct winsize *size, t_tetris *tetris);
 int	my_printf(const char *format, ...);
 int	map_size_col(char *tmp, char *a, t_keybinds *keybinds, int pos);
 int	collision(char **map, t_tetrimino *tetrimino, int x, int y);

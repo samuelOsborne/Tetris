@@ -5,7 +5,7 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Mon Feb 29 16:12:27 2016 Lucas Villeneuve
-** Last update Fri Mar 11 14:00:25 2016 Samuel
+** Last update Fri Mar 11 15:47:30 2016 Lucas Villeneuve
 */
 
 #include <termios.h>
@@ -29,7 +29,7 @@ void		print_the_keys(t_keybinds *keybinds)
   my_printf("Key Pause :%s\n", keybinds->kp);
   (keybinds->next == 0) ? my_printf("Next : No\n") : my_printf("Next : Yes\n");
   my_printf("Level : %d\n", keybinds->level);
-  my_printf("Size : %d*%d\n", keybinds->row, keybinds->col);
+  /* my_printf("Size : %d*%d\n", keybinds->row, keybinds->col); */
 }
 
 t_tetrimino	*ini_load(t_tetris *tetris)
@@ -39,6 +39,8 @@ t_tetrimino	*ini_load(t_tetris *tetris)
   int		i;
   t_tetrimino	*tetrimino;
 
+  if (tetris->map_height < 10 || tetris->map_width < 10)
+    exit(1);
   i = 0;
   if ((dir = opendir("tetriminos")) != NULL)
     {
@@ -87,6 +89,12 @@ t_tetrimino	*debug_mode(t_tetris *tetris, t_keybinds *keybinds)
 
   my_putstr("*** DEBUG MODE ***\n");
   print_the_keys(keybinds);
+  if (tetris->map_height < 10 || tetris->map_width < 10)
+    {
+      my_printf("Size : %d*%d\n", tetris->map_height, tetris->map_width);
+      my_printf("Size : Error\n");
+      exit(1);
+    }
   my_printf("Size : %d*%d\n", tetris->map_height, tetris->map_width);
   i = 0;
   if ((dir = opendir("tetriminos")) != NULL)
