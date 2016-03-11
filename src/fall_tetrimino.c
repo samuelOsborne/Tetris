@@ -5,7 +5,7 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Fri Mar  4 10:28:56 2016 Lucas Villeneuve
-** Last update Fri Mar 11 09:31:25 2016 Samuel
+** Last update Fri Mar 11 10:12:07 2016 Lucas Villeneuve
 */
 
 #include <stdlib.h>
@@ -47,7 +47,7 @@ void	show_in_map(t_tetrimino	*tetrimino, int x, int y)
 	    {
 	      init_pair(1, tetrimino->color, NULL);
 	      attron(COLOR_PAIR(1));
-	      mvprintw(y + i + 2, x + j + 10, "%c", tetrimino->piece[i][j]);
+	      mvprintw(y + i + 2, x + j + 40, "%c", tetrimino->piece[i][j]);
 	      attroff(COLOR_PAIR(1));
 	    }
 	  j++;

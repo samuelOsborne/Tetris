@@ -5,7 +5,7 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Thu Feb 25 18:10:30 2016 Lucas Villeneuve
-** Last update Fri Mar 11 09:19:14 2016 Samuel
+** Last update Fri Mar 11 10:11:53 2016 Lucas Villeneuve
 */
 
 #include <stdlib.h>
@@ -59,11 +59,11 @@ void	display_map_tetris(char **map, t_tetris *tetris)
 	    {
 	      init_pair(map[i][x] - 47, map[i][x] - 48, NULL);
 	      attron(COLOR_PAIR(map[i][x] - 47));
-	      mvprintw(i + 2, x + 10, "*");
+	      mvprintw(i + 2, x + 40, "*");
 	      attroff(COLOR_PAIR(map[i][x] - 47));
 	    }
 	  else
-	    mvprintw(i + 2, x + 10, "%c", map[i][x]);
+	    mvprintw(i + 2, x + 40, "%c", map[i][x]);
 	  x++;
 	}
       i++;
