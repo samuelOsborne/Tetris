@@ -5,7 +5,7 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Mon Feb 29 16:12:27 2016 Lucas Villeneuve
-** Last update Fri Mar 11 15:47:30 2016 Lucas Villeneuve
+** Last update Fri Mar 11 17:06:23 2016 Samuel
 */
 
 #include <termios.h>
@@ -15,21 +15,15 @@
 
 void		print_the_keys(t_keybinds *keybinds)
 {
-  /* check_and_print_keysl(keybinds); */
-  /* check_and_print_keysr(keybinds); */
-  /* check_and_print_keyst(keybinds); */
-  /* check_and_print_keysd(keybinds); */
-  /* check_and_print_keysq(keybinds); */
-  /* check_and_print_keysp(keybinds); */
-  my_printf("Key Left : %s\n", keybinds->kl);
-  my_printf("Key Right : %s\n", keybinds->kr);
-  my_printf("Key Turn : %s\n", keybinds->kt);
-  my_printf("Key Drop : %s\n", keybinds->kd);
-  my_printf("Key Quit : %s\n", keybinds->kq);
-  my_printf("Key Pause :%s\n", keybinds->kp);
+  check_and_print_keysl(keybinds);
+  check_and_print_keysr(keybinds);
+  check_and_print_keyst(keybinds);
+  check_and_print_keysd(keybinds);
+  check_and_print_keysq(keybinds);
+  check_and_print_keysp(keybinds);
   (keybinds->next == 0) ? my_printf("Next : No\n") : my_printf("Next : Yes\n");
   my_printf("Level : %d\n", keybinds->level);
-  /* my_printf("Size : %d*%d\n", keybinds->row, keybinds->col); */
+  my_printf("Size : %d*%d\n", keybinds->row, keybinds->col);
 }
 
 t_tetrimino	*ini_load(t_tetris *tetris)

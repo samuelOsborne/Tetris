@@ -5,86 +5,56 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Mon Mar  7 11:21:28 2016 Samuel
-** Last update Mon Mar  7 20:01:07 2016 Samuel
+** Last update Fri Mar 11 17:05:15 2016 Samuel
 */
 
 #include "my.h"
 
 void		check_and_print_keysr(t_keybinds *keybinds)
 {
-  if (keybinds->kr == 260)
-    my_printf("Key Right : ^EOD\n");
-  else if (keybinds->kr == 261)
-    my_printf("Key Right : ^EOC\n");
-  else if (keybinds->kr == 259)
-    my_printf("Key Right : ^EOA\n");
-  else if (keybinds->kr == 27)
-    my_printf("Key Right : ^E\n");
-  else if (keybinds->kr == 32)
+  if (keybinds->kr[0] == 27)
+    my_printf("Key Right : %s%s\n", "^EO", keybinds->kr);
+  else if (my_strcmp(keybinds->kr, " ") == 0)
     my_printf("Key Right : (space)\n");
   else
-    my_printf("Key Right : %c\n", keybinds->kr);
+    my_printf("Key Right : %s\n", keybinds->kr);
 }
 
 void		check_and_print_keyst(t_keybinds *keybinds)
 {
-  if (keybinds->kt == 260)
-    my_printf("Key Turn : ^EOD\n");
-  else if (keybinds->kt == 261)
-    my_printf("Key Turn : ^EOC\n");
-  else if (keybinds->kt == 259)
-    my_printf("Key Turn : ^EOA\n");
-  else if (keybinds->kt == 27)
-    my_printf("Key Turn : ^E\n");
-  else if (keybinds->kt == 32)
-    my_printf("Key Right : (space)\n");
+  if (keybinds->kt[0] == 27)
+    my_printf("Key Turn : %s%s\n", "^EO", keybinds->kt);
+  else if (my_strcmp(keybinds->kt, " ") == 0)
+    my_printf("Key Turn : (space)\n");
   else
-    my_printf("Key Turn : %c\n", keybinds->kt);
+    my_printf("Key Turn : %s\n", keybinds->kt);
 }
 
 void		check_and_print_keysd(t_keybinds *keybinds)
 {
-  if (keybinds->kd == 260)
-    my_printf("Key Drop : ^EOD\n");
-  else if (keybinds->kd == 261)
-    my_printf("Key Drop : ^EOC\n");
-  else if (keybinds->kd == 259)
-    my_printf("Key Drop : ^EOA\n");
-  else if (keybinds->kd == 27)
-    my_printf("Key Drop : ^E\n");
-  else if (keybinds->kd == 32)
-    my_printf("Key Right : (space)\n");
+  if (keybinds->kd[0] == 27)
+    my_printf("Key Drop : %s%s\n", "^EO", keybinds->kd);
+  else if (my_strcmp(keybinds->kd, " ") == 0)
+    my_printf("Key Drop : (space)\n");
   else
-    my_printf("Key Drop : %c\n", keybinds->kd);
+    my_printf("Key Drop : %s\n", keybinds->kd);
 }
 
 void		check_and_print_keysq(t_keybinds *keybinds)
 {
-  if (keybinds->kq == 260)
-    my_printf("Key Quit : ^EOD\n");
-  else if (keybinds->kq == 261)
-    my_printf("Key Quit : ^EOC\n");
-  else if (keybinds->kq == 259)
-    my_printf("Key Quit : ^EOA\n");
-  else if (keybinds->kq == 32)
+  if (keybinds->kq[0] == 27)
+    my_printf("Key Quit : %s%s\n", "^EO", keybinds->kq);
+  else if (my_strcmp(keybinds->kq, " ") == 0)
     my_printf("Key Quit : (space)\n");
-  else if (keybinds->kq == 27)
-    my_printf("Key Quit : ^E\n");
   else
-    my_printf("Key Quit : %c\n", keybinds->kq);
+    my_printf("Key Quit : %s\n", keybinds->kq);
 }
 void		check_and_print_keysp(t_keybinds *keybinds)
 {
-  if (keybinds->kp == 260)
-    my_printf("Key Pause : ^EOD\n");
-  else if (keybinds->kp == 261)
-    my_printf("Key Pause : ^EOC\n");
-  else if (keybinds->kp == 259)
-    my_printf("Key Pause : ^EOA\n");
-  else if (keybinds->kp == 27)
-    my_printf("Key Pause : ^E\n");
-  else if (keybinds->kp == 32)
-    my_printf("Key Right : (space)\n");
+  if (keybinds->kp[0] == 27)
+    my_printf("Key Pause : %s%s\n", "^EO", keybinds->kp);
+  else if (my_strcmp(keybinds->kp, " ") == 0)
+    my_printf("Key Pause : (space)\n");
   else
-    my_printf("Key Pause : %c\n", keybinds->kp);
+    my_printf("Key Pause : %s\n", keybinds->kp);
 }

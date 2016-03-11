@@ -5,23 +5,17 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Mon Mar  7 11:24:07 2016 Samuel
-** Last update Tue Mar  8 14:40:32 2016 Samuel
+** Last update Fri Mar 11 17:05:30 2016 Samuel
 */
 
 #include "my.h"
 
 void		check_and_print_keysl(t_keybinds *keybinds)
 {
-  if (keybinds->kl == 260)
-    my_printf("Key Left : ^EOD\n");
-  else if (keybinds->kl == 261)
-    my_printf("Key Left : ^EOC\n");
-  else if (keybinds->kl == 259)
-    my_printf("Key Left : ^EOA\n");
-  else if (keybinds->kl == 27)
-    my_printf("Key Left : ^E\n");
-  else if (keybinds->kl == 32)
-    my_printf("Key Right : (space)\n");
+  if (keybinds->kl[0] == 27)
+    my_printf("Key Left : %s%s\n", "^EO", keybinds->kl);
+  else if (my_strcmp(keybinds->kl, " ") == 0)
+    my_printf("Key Left : (space)\n");
   else
-    my_printf("Key Left : %c\n", keybinds->kl);
+    my_printf("Key Left : %s\n", keybinds->kl);
 }
