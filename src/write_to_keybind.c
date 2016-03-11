@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Mon Feb 29 17:49:25 2016 Samuel
-** Last update Wed Mar  9 14:00:20 2016 Samuel
+** Last update Fri Mar 11 17:12:37 2016 Samuel
 */
 
 #include "my.h"
@@ -24,11 +24,11 @@ void	put_left(t_keybinds *keybinds, char *word)
 
 void	put_right(t_keybinds *keybinds, char *word)
 {
-  if (word[0] == '^' &&word[1]== '[')
+  if (word[0] == '^' && word[1]== '[')
     {
-      keybinds->kl[0] =27;
-      keybinds->kl[1] = 'O';
-      keybinds->kl[2] =word[3];
+      keybinds->kr[0] =27;
+      keybinds->kr[1] = 'O';
+      keybinds->kr[2] = word[3];
     }
   else
     keybinds->kr = word;
@@ -36,11 +36,11 @@ void	put_right(t_keybinds *keybinds, char *word)
 
 void	put_turn(t_keybinds *keybinds, char *word)
 {
-  if (word[0] == '^' &&word[1]== '[')
+  if (word[0] == '^' && word[1]== '[')
     {
-      keybinds->kl[0] =27;
-      keybinds->kl[1] = 'O';
-      keybinds->kl[2] =word[3];
+      keybinds->kt[0] =27;
+      keybinds->kt[1] = 'O';
+      keybinds->kt[2] = word[3];
     }
   else
     keybinds->kt = word;
@@ -48,11 +48,11 @@ void	put_turn(t_keybinds *keybinds, char *word)
 
 void	put_drop(t_keybinds *keybinds, char *word)
 {
-  if (word[0] == '^' &&word[1]== '[')
+  if (word[0] == '^' && word[1]== '[')
     {
-      keybinds->kl[0] =27;
-      keybinds->kl[1] = 'O';
-      keybinds->kl[2] =word[3];
+      keybinds->kd[0] =27;
+      keybinds->kd[1] = 'O';
+      keybinds->kd[2] =word[3];
     }
   else
     keybinds->kd = word;
@@ -60,11 +60,11 @@ void	put_drop(t_keybinds *keybinds, char *word)
 
 void	put_quit(t_keybinds *keybinds, char *word)
 {
-  if (word[0] == '^' &&word[1]== '[')
+  if (word[0] == '^' && word[1]== '[')
     {
-      keybinds->kl[0] =27;
-      keybinds->kl[1] = 'O';
-      keybinds->kl[2] =word[3];
+      keybinds->kq[0] = 27;
+      keybinds->kq[1] = 'O';
+      keybinds->kq[2] = word[3];
     }
   else
     keybinds->kq = word;

@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Thu Mar 10 19:59:07 2016 Samuel
-** Last update Fri Mar 11 15:16:48 2016 Lucas Villeneuve
+** Last update Fri Mar 11 21:08:30 2016 Samuel
 */
 #include <stdio.h>
 #include <stdlib.h>
@@ -129,8 +129,8 @@ int		parse_for_bind(char *a, t_keybinds *keybinds)
         }
       get_key_bind(key, keybinds, "lo");
     }
-  else
-    key = a[6]; /* change here to collect the char * */
+  else if (my_strlen(a) == 6)
+    key = a[6]; /* charnge here to collect the char * */
   value = get_char(a);
   get_key_bind(key, keybinds, value);
   return (0);

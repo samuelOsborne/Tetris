@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Mon Feb 29 22:07:59 2016 Samuel
-** Last update Fri Mar 11 09:34:14 2016 Samuel
+** Last update Fri Mar 11 21:08:28 2016 Samuel
 */
 
 #include <ncurses.h>
@@ -72,6 +72,12 @@ void		menu(t_keybinds *keybinds, t_tetris *tetris)
   char		*side;
   int		y;
 
+  if (tetris->checker == 10)
+    {
+      keybinds->level++;
+      tetris->sleep = tetris->sleep - 100;
+      tetris->checker = 0;
+    }
   print_tetris();
   if (keybinds->next == 1)
     print_next();

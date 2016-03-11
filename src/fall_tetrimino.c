@@ -5,7 +5,7 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Fri Mar  4 10:28:56 2016 Lucas Villeneuve
-** Last update Fri Mar 11 14:26:21 2016 Lucas Villeneuve
+** Last update Fri Mar 11 19:01:02 2016 Samuel
 */
 
 #include <stdlib.h>
@@ -104,6 +104,9 @@ void	delete_line(char **map, t_tetris *tetris)
 	}
       if (count == tetris->map_width)
 	{
+	  tetris->lines = tetris->lines + 1;
+	  tetris->checker = tetris->checker + 1;
+	  tetris->score = tetris->score + 100;
 	  tmp = i;
 	  while (tmp > 1)
 	    {
@@ -174,7 +177,7 @@ int	fall_tetrimino(char **map, t_tetris *tetris, t_tetrimino tetrimino, t_keybin
 	x++;
       else if (my_strcmp(buffer, keybinds->kt) == 0 && collision(map, &tetrimino, x - 1, y) == 0)
 	tetrimino = ini_rotate_tetrimino(tetrimino, map, x, y);
-      else if (my_strcmp(buffer, keybinds->kq) == 0) /*apûis sur q pour des barres */
+      else if (my_strcmp(buffer, keybinds->kq) == 0)
 	exit(0);
       else if (my_strcmp(buffer, keybinds->kd) == 0)
 	{
@@ -196,7 +199,7 @@ int	fall_tetrimino(char **map, t_tetris *tetris, t_tetrimino tetrimino, t_keybin
       display_map_tetris(map, tetris);
       show_in_map(&tetrimino, x, y);
       refresh();
-      usleep(75000);
+      usleep(tetris->sleep);
     }
   mode_non_canonique(1);
   return (0);

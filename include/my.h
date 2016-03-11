@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Tue Feb 23 10:31:40 2016 Samuel
-** Last update Fri Mar 11 15:59:22 2016 Lucas Villeneuve
+** Last update Fri Mar 11 18:52:12 2016 Samuel
 */
 
 #ifndef MY_H_
@@ -42,6 +42,8 @@ typedef struct		s_tetris
   int			high_score;
   int			score;
   int			lines;
+  int			sleep;
+  int			checker;
 }			t_tetris;
 
 typedef struct		s_tetrimino
@@ -74,6 +76,7 @@ void	my_putstr(char *str);
 void	fall_letter(char **map, t_tetris *tetris, t_keybinds *keybinds);
 void	display_map_tetris(char **map, t_tetris *tetris);
 void	init_keybinds(t_keybinds *keybinds);
+void	init_keybinds2(t_keybinds *keybinds);
 void	menu(t_keybinds *keybinds, t_tetris *tetris);
 void	loop_game(char **map, t_tetris *tetris, t_tetrimino *tetrimino, t_keybinds *keybinds);
 void	init_screen(t_tetris *tetris, char **map, t_tetrimino *tetrimino, t_keybinds *keybinds);
