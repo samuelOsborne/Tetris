@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Thu Mar 10 19:59:07 2016 Samuel
-** Last update Mon Mar 14 08:21:24 2016 Samuel
+** Last update Mon Mar 14 10:06:12 2016 Samuel
 */
 #include <stdio.h>
 #include <stdlib.h>
@@ -161,11 +161,11 @@ int		compare_args_for_keybind(int ac, char **av, t_keybinds *keybinds)
         }
       else if (av[i][1] == 'l' && ((i + 1) < ac))
 	keybinds->level = my_getnbr(av[i + 1]);
-      else
-	{
-	  my_printf("Please enter a valid argument.\n");
-	  exit(0);
-	}
+      else if (my_strcmp(av[i], "--debug") != 0 && my_strcmp(av[i], "-d") != 0)
+      	{
+      	  my_printf("Please enter a valid argument.\n");
+      	  exit(0);
+      	}
       i++;
     }
   return (0);

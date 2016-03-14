@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Tue Feb 23 10:27:54 2016 Samuel
-** Last update Mon Mar 14 08:31:15 2016 Samuel
+** Last update Mon Mar 14 10:07:22 2016 Samuel
 */
 
 #include <ncurses.h>
@@ -100,10 +100,7 @@ int		main(int argc, char **argv)
       i++;
     }
   if (debug == true)
-    {
-      printf("debug\n");
-      tetrimino = debug_mode(tetris, &keybinds);
-    }
+    tetrimino = debug_mode(tetris, &keybinds);
   else
     tetrimino = ini_load(tetris);
   map = create_map(tetris);
