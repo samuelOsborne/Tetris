@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Tue Feb 23 10:31:40 2016 Samuel
-** Last update Fri Mar 11 18:52:12 2016 Samuel
+** Last update Mon Mar 14 08:42:27 2016 Samuel
 */
 
 #ifndef MY_H_
@@ -80,8 +80,9 @@ void	init_keybinds2(t_keybinds *keybinds);
 void	menu(t_keybinds *keybinds, t_tetris *tetris);
 void	loop_game(char **map, t_tetris *tetris, t_tetrimino *tetrimino, t_keybinds *keybinds);
 void	init_screen(t_tetris *tetris, char **map, t_tetrimino *tetrimino, t_keybinds *keybinds);
+void	delete_line(char **map, t_tetris *tetris);
 int	check_if_term_exists(char **ae);
-int	compare_args_for_keybinds(int ac, char **av, t_keybinds *keybinds);
+int	compare_args_for_keybind(int ac, char **av, t_keybinds *keybinds);
 int	map_size_detect(char *a, t_keybinds *keybinds);
 int	get_key_bind(char a, t_keybinds *keybinds, char *word);
 int	my_strlen(char *str);
@@ -92,14 +93,18 @@ int	my_printf(const char *format, ...);
 int	map_size_col(char *tmp, char *a, t_keybinds *keybinds, int pos);
 int	collision(char **map, t_tetrimino *tetrimino, int x, int y);
 int	fall_tetrimino(char **map, t_tetris *tetris, t_tetrimino tetrimino, t_keybinds *keybinds);
+int	mode_non_canonique(int i);
+char	*take_name(char *name, char *str);
 char	*epurstr(char *str);
 char    *my_strcpy(char *dest, char *src);
 char	*my_strcat(char *dest, char *src);
 char	**create_map(t_tetris *tetris);
 char	*put_void(char *a);
+char	return_char(char a);
 t_tetrimino	*load_tetrimino(int nb, bool debug, t_tetris *tetris);
 t_tetrimino	*debug_mode(t_tetris *tetris, t_keybinds *keybinds);
 t_tetrimino	ini_rotate_tetrimino(t_tetrimino tetrimino, char **map, int x, int y);
+t_tetrimino	*ini_load(t_tetris *tetris);
 
 #endif /* !BSD_SOURCE */
 #endif /* !MY_H_ */

@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Thu Mar 10 19:59:07 2016 Samuel
-** Last update Fri Mar 11 21:08:30 2016 Samuel
+** Last update Mon Mar 14 08:21:24 2016 Samuel
 */
 #include <stdio.h>
 #include <stdlib.h>
@@ -49,9 +49,10 @@ int		map_size_col(char *tmp, char *a, t_keybinds *keybinds, int pos)
       j++;
     }
   j = 0;
+  pos--;
   while (a[pos] != '\0')
     {
-      if (a[pos] >= 48 && a[pos] <= 56)
+      if (a[pos] >= 48 && a[pos] <= 57)
         {
           tmp[j] = a[pos];
           j++;
@@ -121,16 +122,17 @@ int		parse_for_bind(char *a, t_keybinds *keybinds)
           return (0);
         }
       else if (a[2] == 'w' || a[2] == 'd')
-        key = return_char(a[1]);
+        key = return_char(a[2]);
       else
         {
           get_level(a, keybinds);
           return (0);
         }
       get_key_bind(key, keybinds, "lo");
+      return (0);
     }
-  else if (my_strlen(a) == 6)
-    key = a[6]; /* charnge here to collect the char * */
+  else if (my_strlen(a) >= 11)
+    key = a[6];
   value = get_char(a);
   get_key_bind(key, keybinds, value);
   return (0);
@@ -146,7 +148,7 @@ int		compare_args_for_keybind(int ac, char **av, t_keybinds *keybinds)
   while (i != ac)
     {
       if (av[i][0] == '-' && av[i][1] == '-')
-        parse_for_bind(av[i], keybinds);
+	parse_for_bind(av[i], keybinds);
       else if (av[i][1] == 'k' || av[i][1] == 'w')
         {
           a = av[i][1];
@@ -158,7 +160,12 @@ int		compare_args_for_keybind(int ac, char **av, t_keybinds *keybinds)
           get_key_bind(a, keybinds, word);
         }
       else if (av[i][1] == 'l' && ((i + 1) < ac))
-        keybinds->level = my_getnbr(av[i + 1]);
+	keybinds->level = my_getnbr(av[i + 1]);
+      else
+	{
+	  my_printf("Please enter a valid argument.\n");
+	  exit(0);
+	}
       i++;
     }
   return (0);

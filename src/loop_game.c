@@ -1,3 +1,4 @@
+
 /*
 ** loop_game.c for tetris in /media/villen_l/home/villen_l/rendu/Tek1Semestre2/PSU/PSU_2015_tetris
 ** 
@@ -5,10 +6,12 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Sat Mar  5 15:00:46 2016 Lucas Villeneuve
-** Last update Fri Mar 11 09:31:04 2016 Samuel
+** Last update Mon Mar 14 08:40:18 2016 Samuel
 */
 
 #include <ncurses.h>
+#include <stdlib.h>
+#include <time.h>
 #include "my.h"
 
 void	end_game()

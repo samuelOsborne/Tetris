@@ -5,7 +5,7 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Fri Mar  4 10:28:56 2016 Lucas Villeneuve
-** Last update Fri Mar 11 19:01:02 2016 Samuel
+** Last update Mon Mar 14 08:39:21 2016 Samuel
 */
 
 #include <stdlib.h>
@@ -143,13 +143,13 @@ int		mode_non_canonique(int i)
   if (i == 1)
     if ((ioctl(0, TCSETS, &oldT)) < 0)
       return (1);
+  return (0);
 }
 
 int	fall_tetrimino(char **map, t_tetris *tetris, t_tetrimino tetrimino, t_keybinds *keybinds) /* maybe pass to display the size of the map from keybinds instead of char **map? */
 {
   int	x;
   int	y;
-  int	ch;
   int	col;
   char	buffer[5];
 

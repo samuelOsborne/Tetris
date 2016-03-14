@@ -5,9 +5,10 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Mon Feb 29 16:12:27 2016 Lucas Villeneuve
-** Last update Fri Mar 11 19:03:37 2016 Samuel
+** Last update Mon Mar 14 08:36:36 2016 Samuel
 */
 
+#include <unistd.h>
 #include <termios.h>
 #include <stdlib.h>
 #include <dirent.h>

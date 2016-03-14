@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Tue Feb 23 10:27:54 2016 Samuel
-** Last update Fri Mar 11 18:53:01 2016 Samuel
+** Last update Mon Mar 14 08:31:15 2016 Samuel
 */
 
 #include <ncurses.h>
@@ -35,7 +35,6 @@ int			get_input(t_keybinds *keybinds, int j)
 
 void			init_screen(t_tetris *tetris, char **map, t_tetrimino *tetrimino, t_keybinds *keybinds)
 {
-  SCREEN		*window;
   struct winsize	size;
 
   tetris->sleep = 120000;
@@ -43,7 +42,6 @@ void			init_screen(t_tetris *tetris, char **map, t_tetrimino *tetrimino, t_keybi
   tetris->high_score = 0;
   tetris->score = 0;
   initscr();
-  window = newterm(NULL, stdout, stdin);
   mode_non_canonique(0);
   clear();
   noecho();
@@ -97,12 +95,15 @@ int		main(int argc, char **argv)
 	  print_help(argv[0]);
 	  return (1);
 	}
-      if (my_strcmp(argv[i], "--debug") == 0 ||my_strcmp(argv[i], "-d") == 0)
+      if (my_strcmp(argv[i], "--debug") == 0 || my_strcmp(argv[i], "-d") == 0)
 	debug = true;
       i++;
     }
   if (debug == true)
-    tetrimino = debug_mode(tetris, &keybinds);
+    {
+      printf("debug\n");
+      tetrimino = debug_mode(tetris, &keybinds);
+    }
   else
     tetrimino = ini_load(tetris);
   map = create_map(tetris);
