@@ -5,7 +5,7 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Tue Mar  1 12:39:58 2016 Lucas Villeneuve
-** Last update Thu Mar 10 16:46:07 2016 Lucas Villeneuve
+** Last update Mon Mar 14 14:09:01 2016 Lucas Villeneuve
 */
 
 #include <stdlib.h>
@@ -17,6 +17,20 @@
 #include "my.h"
 #include "get_next_line.h"
 
+char	*fill_tmp(char *name, char *tmp)
+{
+  int	i;
+
+  i = 0;
+  while (name[i] && name[i] != '.')
+    {
+      tmp[i] = name[i];
+      i++;
+    }
+  tmp[i] = 0;
+  return (tmp);
+}
+
 char	*take_name(char *name, char *str)
 {
   int	i;
@@ -24,10 +38,10 @@ char	*take_name(char *name, char *str)
   char	*tmp;
 
   i = 0;
+  j = 0;
   while (name[i] && name[i] != '.')
     i++;
-  j = 0;
-  while ((name[i] == str[j]) && str[j] != 0 && name[i] != 0)
+  while ((name[i] == str[j]) && str[j] && name[i])
     {
       i++;
       j++;
@@ -36,13 +50,7 @@ char	*take_name(char *name, char *str)
     {
       if ((tmp = malloc(my_strlen(name))) == NULL)
 	return (NULL);
-      i = 0;
-      while (name[i] && name[i] != '.')
-	{
-	  tmp[i] = name[i];
-	  i++;
-	}
-      tmp[i] = 0;
+      take_name(name, tmp);
       return (tmp);
     }
   return (NULL);
@@ -88,10 +96,7 @@ int	get_vars_tetrimino(t_tetrimino *tetrimino, int fd)
 	  i = 0;
 	}
       else
-	{
-	  tmp[i] = str[j];
-	  i++;
-	}
+	tmp[i++] = str[j];
       j++;
     }
   return (0);

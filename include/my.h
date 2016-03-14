@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Tue Feb 23 10:31:40 2016 Samuel
-** Last update Mon Mar 14 08:42:27 2016 Samuel
+** Last update Mon Mar 14 12:48:47 2016 Lucas Villeneuve
 */
 
 #ifndef MY_H_
@@ -16,6 +16,8 @@
 
 #include <sys/ioctl.h>
 #include <stdbool.h>
+#include <unistd.h>
+#include <sys/types.h>
 
 typedef struct          s_keybinds
 {
@@ -87,13 +89,14 @@ int	map_size_detect(char *a, t_keybinds *keybinds);
 int	get_key_bind(char a, t_keybinds *keybinds, char *word);
 int	my_strlen(char *str);
 int	my_getnbr(char *str);
+int	usleep();
+int	mode_non_canonique(int i);
 int	my_strcmp(char *s1, char *s2);
 int	check_winsz(struct winsize *size, t_tetris *tetris);
 int	my_printf(const char *format, ...);
 int	map_size_col(char *tmp, char *a, t_keybinds *keybinds, int pos);
 int	collision(char **map, t_tetrimino *tetrimino, int x, int y);
 int	fall_tetrimino(char **map, t_tetris *tetris, t_tetrimino tetrimino, t_keybinds *keybinds);
-int	mode_non_canonique(int i);
 char	*take_name(char *name, char *str);
 char	*epurstr(char *str);
 char    *my_strcpy(char *dest, char *src);

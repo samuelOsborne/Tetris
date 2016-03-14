@@ -5,7 +5,7 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Thu Feb 25 18:10:30 2016 Lucas Villeneuve
-** Last update Fri Mar 11 10:11:53 2016 Lucas Villeneuve
+** Last update Mon Mar 14 12:27:46 2016 Lucas Villeneuve
 */
 
 #include <stdlib.h>
@@ -57,7 +57,7 @@ void	display_map_tetris(char **map, t_tetris *tetris)
 	  if (map[i][x] != '|' && map[i][x] != '-' && map[i][x] != ' '
 	      && map[i][x] != 0)
 	    {
-	      init_pair(map[i][x] - 47, map[i][x] - 48, NULL);
+	      init_pair(map[i][x] - 47, map[i][x] - 48, 0);
 	      attron(COLOR_PAIR(map[i][x] - 47));
 	      mvprintw(i + 2, x + 40, "*");
 	      attroff(COLOR_PAIR(map[i][x] - 47));
