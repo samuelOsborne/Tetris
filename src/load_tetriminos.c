@@ -5,7 +5,7 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Tue Mar  1 12:39:58 2016 Lucas Villeneuve
-** Last update Mon Mar 14 14:09:01 2016 Lucas Villeneuve
+** Last update Mon Mar 14 14:18:07 2016 Lucas Villeneuve
 */
 
 #include <stdlib.h>
@@ -50,7 +50,7 @@ char	*take_name(char *name, char *str)
     {
       if ((tmp = malloc(my_strlen(name))) == NULL)
 	return (NULL);
-      take_name(name, tmp);
+      fill_tmp(name, tmp);
       return (tmp);
     }
   return (NULL);
