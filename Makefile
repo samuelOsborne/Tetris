@@ -5,7 +5,7 @@
 ## Login   <samuel@epitech.net>
 ## 
 ## Started on  Tue Feb 23 10:20:42 2016 Samuel
-## Last update Mon Mar 14 12:42:56 2016 Lucas Villeneuve
+## Last update Wed Mar 16 11:16:22 2016 Lucas Villeneuve
 ##
 
 NAME	=	tetris
@@ -15,7 +15,10 @@ SRC	=	src/main.c 			\
 		src/check_winsz.c		\
 		src/debug.c			\
 		src/load_tetriminos.c		\
+		src/load_tetriminos2.c		\
 		src/fall_tetrimino.c		\
+		src/fall_tetrimino2.c		\
+		src/pause.c			\
 		src/loop_game.c			\
 		src/get_next_line.c		\
 		src/epurstr.c			\

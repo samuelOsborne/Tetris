@@ -5,83 +5,33 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Fri Mar  4 10:28:56 2016 Lucas Villeneuve
-** Last update Mon Mar 14 12:27:57 2016 Lucas Villeneuve
+** Last update Wed Mar 16 11:18:11 2016 Lucas Villeneuve
 */
 
 #include <stdlib.h>
 #include <ncurses.h>
 #include <unistd.h>
-#include <termios.h>
-#include <errno.h>
-#include <stdio.h>
 #include "my.h"
+#include "get_next_line.h"
 
-void		put_in_map(char **map, t_tetrimino *tetrimino, int x, int y)
+void	delete_line2(char **map, t_tetris *tetris, int i , int j)
 {
-  int		i;
-  int		j;
+  int	tmp;
 
-  i = 0;
-  while (i < tetrimino->height)
+  tetris->lines = tetris->lines + 1;
+  tetris->checker = tetris->checker + 1;
+  tetris->score = tetris->score + 100;
+  tmp = i;
+  while (tmp > 1)
     {
-      j = 0;
-      while (j < tetrimino->width)
+      j = 1;
+      while (j < tetris->map_width + 1)
 	{
-	  if (tetrimino->piece[i][j] != 0 && tetrimino->piece[i][j] != ' ')
-	    map[y + i][x + j] = tetrimino->color + 48;
+	  map[tmp][j] = map[tmp - 1][j];
 	  j++;
 	}
-      i++;
+      tmp--;
     }
-}
-
-void	show_in_map(t_tetrimino	*tetrimino, int x, int y)
-{
-  int		i;
-  int		j;
-
-  i = 0;
-  while (i < tetrimino->height)
-    {
-      j = 0;
-      while (j < tetrimino->width)
-	{
-	  if (tetrimino->piece[i][j] != 0)
-	    {
-	      init_pair(1, tetrimino->color, 0);
-	      attron(COLOR_PAIR(1));
-	      mvprintw(y + i + 2, x + j + 40, "%c", tetrimino->piece[i][j]);
-	      attroff(COLOR_PAIR(1));
-	    }
-	  j++;
-	}
-      i++;
-    }
-}
-
-int	collision(char **map, t_tetrimino *tetrimino, int x, int y)
-{
-  int	i;
-  int	j;
-
-  i = 0;
-  while (i < tetrimino->height)
-    {
-      j = 0;
-      while (j < tetrimino->width)
-	{
-	  if (tetrimino->piece[i][j] == '*' && map[y + i][x + j] != ' ')
-	    {
-	      if (y == 2)
-		return (2);
-	      else
-		return (1);
-	    }
-	  j++;
-	}
-      i++;
-    }
-  return (0);
 }
 
 void	delete_line(char **map, t_tetris *tetris)
@@ -89,7 +39,6 @@ void	delete_line(char **map, t_tetris *tetris)
   int	i;
   int	j;
   int	count;
-  int	tmp;
 
   i = 1;
   while (i < tetris->map_height)
@@ -103,104 +52,73 @@ void	delete_line(char **map, t_tetris *tetris)
 	  j++;
 	}
       if (count == tetris->map_width)
-	{
-	  tetris->lines = tetris->lines + 1;
-	  tetris->checker = tetris->checker + 1;
-	  tetris->score = tetris->score + 100;
-	  tmp = i;
-	  while (tmp > 1)
-	    {
-	      j = 1;
-	      while (j < tetris->map_width + 1)
-		{
-		  map[tmp][j] = map[tmp - 1][j];
-		  j++;
-		}
-	      tmp--;
-	    }
-	}
+	delete_line2(map, tetris, i, j);
       i++;
     }
 }
 
-int		mode_non_canonique(int i)
+int	finish_fall(char **map, t_tetrimino *tetrimino, t_tetris *tetris, int col)
 {
-  static struct termios oldT;
-  static struct termios newT;
+  put_in_map(map, tetrimino, tetris->x, tetris->y);
+  display_map_tetris(map, tetris);
+  if (col == 2)
+    return (2);
+  else
+    return (1);
+}
 
-  if (i == 0)
+int	fall_tetrimino2(char **map, t_tetrimino *tetrimino, t_keybinds *keybinds, t_tetris *tetris)
+{
+  int	col;
+
+  if ((my_strcmp(keybinds->buffer, keybinds->kl) == 0)
+      && collision(map, tetrimino, tetris->x - 1, tetris->y) == 0)
+    tetris->x--;
+  else if ((my_strcmp(keybinds->buffer, keybinds->kr) == 0)
+	   && collision(map, tetrimino, tetris->x + 1, tetris->y) == 0)
+    tetris->x++;
+  else if (my_strcmp(keybinds->buffer, keybinds->kq) == 0)
     {
-      if (ioctl(0, TCGETS, &oldT) < 0)
-	return (1);
-      if (ioctl(0, TCGETS, &newT) < 0)
-        return (1);
-      newT.c_lflag &= ~ECHO;
-      newT.c_lflag &= ~ICANON;
-      newT.c_cc[VMIN] = 0;
-      newT.c_cc[VTIME] = 0.1;
-      ioctl(0, TCSETS, &newT);
+      endwin();
+      exit(0);
     }
-  if (i == 1)
-    if ((ioctl(0, TCSETS, &oldT)) < 0)
+  else if (my_strcmp(keybinds->buffer, keybinds->kd) == 0)
+    {
+      while ((col = collision(map, tetrimino, tetris->x, tetris->y + 1)) == 0)
+	tetris->y++;
+      put_in_map(map, tetrimino, tetris->x, tetris->y);
+      display_map_tetris(map, tetris);
       return (1);
+    }
+  pause_game(keybinds);
   return (0);
 }
 
-int	fall_tetrimino(char **map, t_tetris *tetris, t_tetrimino tetrimino, t_keybinds *keybinds) /* maybe pass to display the size of the map from keybinds instead of char **map? */
+int	fall_tetrimino(char **map, t_tetris *tetris,
+		       t_tetrimino tetrimino, t_keybinds *keybinds)
 {
-  int	x;
-  int	y;
   int	col;
-  char	buffer[5];
 
-  y = 1;
-  x = tetris->map_width / 2;
   while (1)
     {
       menu(keybinds, tetris);
-      if ((read(0, buffer, 5) == -1))
+      if ((read(0, keybinds->buffer, 5) == -1))
 	return (1);
-      if ((col = collision(map, &tetrimino, x, y + 1)) == 0)
-	y++;
+      if ((col = collision(map, &tetrimino, tetris->x, tetris->y + 1)) == 0)
+	tetris->y++;
+      else if (finish_fall(map, &tetrimino, tetris, col) == 2)
+	return (2);
       else
-	{
-      	  put_in_map(map, &tetrimino, x, y);
-	  display_map_tetris(map, tetris);
-	  if (col == 2)
-	    return (2);
-	  else
-	    return (1);
-	}
-      if ((my_strcmp(buffer, keybinds->kl) == 0) && collision(map, &tetrimino, x - 1, y) == 0)
-	x--;
-      else if ((my_strcmp(buffer, keybinds->kr) == 0) && collision(map, &tetrimino, x + 1, y) == 0)
-	x++;
-      else if (my_strcmp(buffer, keybinds->kt) == 0 && collision(map, &tetrimino, x - 1, y) == 0)
-	tetrimino = ini_rotate_tetrimino(tetrimino, map, x, y);
-      else if (my_strcmp(buffer, keybinds->kq) == 0)
-	exit(0);
-      else if (my_strcmp(buffer, keybinds->kd) == 0)
-	{
-	  while ((col = collision(map, &tetrimino, x, y + 1)) == 0)
-	    y++;
-	  put_in_map(map, &tetrimino, x, y);
-	  display_map_tetris(map, tetris);
-	  if (col == 2)
-	    return (2);
-	  else
-	    return (1);
-	}
-      buffer[0] = '\0';
-      buffer[1] = '\0';
-      buffer[2] = '\0';
-      buffer[3] = '\0';
-      buffer[4] = '\0';
-      buffer[5] = '\0';
+	return (1);
+      fall_tetrimino2(map, &tetrimino, keybinds, tetris);
+      if (my_strcmp(keybinds->buffer, keybinds->kt) == 0
+	  && collision(map, &tetrimino, tetris->x, tetris->y) == 0)
+	tetrimino = ini_rotate_tetrimino(tetrimino, map, tetris->x, tetris->y);
+      my_memset(keybinds->buffer, 5);
       display_map_tetris(map, tetris);
-      show_in_map(&tetrimino, x, y);
+      show_in_map(&tetrimino, tetris->x, tetris->y);
       refresh();
       usleep(tetris->sleep);
     }
-  mode_non_canonique(1);
   return (0);
 }

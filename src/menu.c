@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Mon Feb 29 22:07:59 2016 Samuel
-** Last update Fri Mar 11 21:08:28 2016 Samuel
+** Last update Tue Mar 15 13:42:50 2016 Lucas Villeneuve
 */
 
 #include <ncurses.h>
@@ -18,11 +18,11 @@ int		print_tetris()
   if (has_colors() == FALSE)
     return (1);
   start_color();
-  mvprintw(1, 5, "*** **** *** **** * ***");
-  mvprintw(2, 5, " *  *     *  *  *   *");
-  mvprintw(3, 5, " *  ****  *  **** * ***");
-  mvprintw(4, 5, " *  *     *  * *  *   *");
-  mvprintw(5, 5, " *  ****  *  *  * * ***");
+  mvprintw(1, 5, "***** **** ***** ***** ***** ****");
+  mvprintw(2, 5, "  *   *      *   *   *   *   *");
+  mvprintw(3, 5, "  *   ****   *   *****   *   ****");
+  mvprintw(4, 5, "  *   *      *   *  *    *      *");
+  mvprintw(5, 5, "  *   ****   *   *   * ***** ****");
   return (0);
 }
 

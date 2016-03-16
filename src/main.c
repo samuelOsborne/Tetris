@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Tue Feb 23 10:27:54 2016 Samuel
-** Last update Mon Mar 14 10:07:22 2016 Samuel
+** Last update Tue Mar 15 14:08:04 2016 Lucas Villeneuve
 */
 
 #include <ncurses.h>
@@ -68,42 +68,46 @@ void	print_help(char *str)
   my_putstr("  --map-size={row,col}\tSet game size at row, col\n");
   my_putstr("  -w --without-next\tHide next tetrimino\n");
   my_putstr("  -d --debug\t\tDebug mode\n");
+  exit(1);
 }
 
-int		main(int argc, char **argv)
+void		init_game(int debug, t_tetris *tetris, t_keybinds keybinds)
 {
-  int		i;
-  t_tetris	*tetris;
   char		**map;
   t_tetrimino	*tetrimino;
-  bool		debug;
-  t_keybinds	keybinds;
 
-  init_keybinds(&keybinds);
-  if (argc != 1)
-    compare_args_for_keybind(argc, argv, &keybinds);
-  if ((tetris = malloc(sizeof(t_tetris))) == NULL)
-    return (1);
   tetris->map_width = keybinds.col;
   tetris->map_height = keybinds.row;
-  debug = false;
-  i = 1;
-  while (i < argc)
-    {
-      if (my_strcmp(argv[i], "--help") == 0)
-	{
-	  print_help(argv[0]);
-	  return (1);
-	}
-      if (my_strcmp(argv[i], "--debug") == 0 || my_strcmp(argv[i], "-d") == 0)
-	debug = true;
-      i++;
-    }
   if (debug == true)
     tetrimino = debug_mode(tetris, &keybinds);
   else
     tetrimino = ini_load(tetris);
   map = create_map(tetris);
   init_screen(tetris, map, tetrimino, &keybinds);
+}
+
+int		main(int argc, char **argv)
+{
+  int		i;
+  t_tetris	*tetris;
+  t_keybinds	keybinds;
+  bool		debug;
+
+  if ((tetris = malloc(sizeof(t_tetris))) == NULL)
+    return (1);
+  init_keybinds(&keybinds);
+  if (argc != 1)
+    compare_args_for_keybind(argc, argv, &keybinds);
+  debug = false;
+  i = 1;
+  while (i < argc)
+    {
+      if (my_strcmp(argv[i], "--help") == 0)
+	print_help(argv[0]);
+      else if (my_strcmp(argv[i], "--debug") == 0 || my_strcmp(argv[i], "-d") == 0)
+	debug = true;
+      i++;
+    }
+  init_game(debug, tetris, keybinds);
   return (0);
 }
