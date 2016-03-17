@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Mon Feb 29 22:07:59 2016 Samuel
-** Last update Thu Mar 17 13:52:50 2016 Lucas Villeneuve
+** Last update Thu Mar 17 20:49:58 2016 Samuel
 */
 
 #include <ncurses.h>
@@ -79,13 +79,11 @@ void		print_lines(t_keybinds *keybinds, t_tetris *tetris)
   char		*scorec;
   char		*lines;
   char		*level;
-  char		*timer;
 
   lines = "lines";
   level = "level";
   high_score = "High Score";
   scorec = "score";
-  timer = "timer";
   mvprintw(7, 8, high_score);
   printw("         %d", tetris->high_score);
   mvprintw(8, 8, scorec);
@@ -94,7 +92,6 @@ void		print_lines(t_keybinds *keybinds, t_tetris *tetris)
   printw("              %d", tetris->lines);
   mvprintw(11, 8, level);
   printw("              %d", keybinds->level);
-  mvprintw(13, 8, timer);
 }
 
 void		menu(t_keybinds *keybinds, t_tetris *tetris, t_tetrimino *tet)
