@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Tue Feb 23 10:31:40 2016 Samuel
-** Last update Thu Mar 17 10:45:39 2016 Lucas Villeneuve
+** Last update Thu Mar 17 17:59:45 2016 Lucas Villeneuve
 */
 
 #ifndef MY_H_
@@ -80,6 +80,7 @@ void    put_level(t_keybinds *keybinds, char *word);
 void	put_in_map(char **map, t_tetrimino *tetrimino, int x, int y);
 void	show_in_map(t_tetrimino	*tetrimino, int x, int y);
 void	test_time(int);
+void	sort_tetrimino(t_tetrimino *tetrimino, int nb);
 void	print_lines(t_keybinds *keybinds, t_tetris *tetris);
 void	my_putstr(char *str);
 void	fall_letter(char **map, t_tetris *tetris, t_keybinds *keybinds);
@@ -115,6 +116,7 @@ char	*put_void(char *a);
 char	return_char(char a);
 t_tetrimino	*load_tetrimino(int nb, bool debug, t_tetris *tetris, int i);
 t_tetrimino	*debug_mode(t_tetris *tetris, t_keybinds *keybinds);
+t_tetrimino	*print_tetriminos(t_tetris *tetris, t_tetrimino *str);
 t_tetrimino	ini_rotate_tetrimino(t_tetrimino tetrimino, char **map, int x, int y);
 t_tetrimino	*ini_load(t_tetris *tetris);
 
