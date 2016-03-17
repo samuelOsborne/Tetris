@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Mon Feb 29 22:07:59 2016 Samuel
-** Last update Thu Mar 17 11:01:17 2016 Lucas Villeneuve
+** Last update Thu Mar 17 13:52:50 2016 Lucas Villeneuve
 */
 
 #include <ncurses.h>
@@ -31,7 +31,6 @@ void	show_next_in_map(t_tetrimino *tetrimino)
   int		i;
   int		j;
 
-  mvprintw(19, 30, "%d", tetrimino->color);
   i = 0;
   while (i < tetrimino->height)
     {
