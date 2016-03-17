@@ -5,7 +5,7 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Mon Feb 29 16:12:27 2016 Lucas Villeneuve
-** Last update Thu Mar 17 18:01:21 2016 Lucas Villeneuve
+** Last update Thu Mar 17 18:04:25 2016 Lucas Villeneuve
 */
 
 #include <unistd.h>
@@ -55,6 +55,8 @@ t_tetrimino	*ini_load(t_tetris *tetris)
   if (i < 1)
     exit(1);
   tetrimino = load_tetrimino(i, false, tetris, 0);
+  if ((tetrimino = print_tetriminos(tetris, tetrimino, false)) == NULL)
+    return (NULL);
   return (tetrimino);
 }
 
@@ -118,7 +120,7 @@ t_tetrimino	*debug_mode(t_tetris *tetris, t_keybinds *keybinds)
   i = count_tetriminos();
   tetrimino = load_tetrimino(i, true, tetris, 0);
   sort_tetrimino(tetrimino, tetris->nb);
-  if ((tetrimino = print_tetriminos(tetris, tetrimino)) == NULL)
+  if ((tetrimino = print_tetriminos(tetris, tetrimino, true)) == NULL)
     return (NULL);
   my_putstr("Press a key to start Tetris\n");
   mode_non_canonique2(0);

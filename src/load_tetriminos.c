@@ -5,7 +5,7 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Tue Mar  1 12:39:58 2016 Lucas Villeneuve
-** Last update Thu Mar 17 18:00:16 2016 Lucas Villeneuve
+** Last update Thu Mar 17 18:04:08 2016 Lucas Villeneuve
 */
 
 #include <stdlib.h>
@@ -116,7 +116,7 @@ void		sort_tetrimino(t_tetrimino *tetrimino, int nb)
     }
 }
 
-t_tetrimino	*print_tetriminos(t_tetris *tetris, t_tetrimino *str)
+t_tetrimino	*print_tetriminos(t_tetris *tetris, t_tetrimino *str, bool debug)
 {
   int	i;
   int	j;
@@ -144,7 +144,7 @@ t_tetrimino	*print_tetriminos(t_tetris *tetris, t_tetrimino *str)
       file = my_strcat(file, ".tetrimino");
       if ((fd = open(file, O_RDONLY)) == -1)
       	return (NULL);
-      if (check_value_tetrimino(&str[i], true, fd) == 1)
+      if (check_value_tetrimino(&str[i], debug, fd) == 1)
 	tetris->nb--;
       else
 	{
