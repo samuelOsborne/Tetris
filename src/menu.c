@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Mon Feb 29 22:07:59 2016 Samuel
-** Last update Tue Mar 15 13:42:50 2016 Lucas Villeneuve
+** Last update Thu Mar 17 11:01:17 2016 Lucas Villeneuve
 */
 
 #include <ncurses.h>
@@ -26,9 +26,36 @@ int		print_tetris()
   return (0);
 }
 
-void		print_next()
+void	show_next_in_map(t_tetrimino *tetrimino)
+{
+  int		i;
+  int		j;
+
+  mvprintw(19, 30, "%d", tetrimino->color);
+  i = 0;
+  while (i < tetrimino->height)
+    {
+      j = 0;
+      while (j < tetrimino->width)
+	{
+	  if (tetrimino->piece[i][j] != 0)
+	    {
+	      init_pair(10, tetrimino->color, 0);
+	      attron(COLOR_PAIR(10));
+
+	      mvprintw(i + 20, j + 24, "%c", tetrimino->piece[i][j]);
+	      attroff(COLOR_PAIR(10));
+	    }
+	  j++;
+	}
+      i++;
+    }
+}
+
+void		print_next(t_tetris *tetris, t_tetrimino *tetrimino)
 {
   int		y;
+  int		x;
 
   y = 19;
   mvprintw(18, 23, "+--------+");
@@ -37,9 +64,14 @@ void		print_next()
   while (y != 24)
     {
       mvprintw(y, 23, "|");
+      x = 24;
+      if (y != 19)
+	while (x != 31)
+	  mvprintw(y, x++, " ");
       mvprintw(y, 32, "|");
       y++;
     }
+  show_next_in_map(&tetrimino[tetris->next]);
 }
 
 void		print_lines(t_keybinds *keybinds, t_tetris *tetris)
@@ -66,7 +98,7 @@ void		print_lines(t_keybinds *keybinds, t_tetris *tetris)
   mvprintw(13, 8, timer);
 }
 
-void		menu(t_keybinds *keybinds, t_tetris *tetris)
+void		menu(t_keybinds *keybinds, t_tetris *tetris, t_tetrimino *tet)
 {
   char		*top;
   char		*side;
@@ -80,7 +112,7 @@ void		menu(t_keybinds *keybinds, t_tetris *tetris)
     }
   print_tetris();
   if (keybinds->next == 1)
-    print_next();
+    print_next(tetris, tet);
   y = 7;
   top = "+--------------------------+";
   side = "|";

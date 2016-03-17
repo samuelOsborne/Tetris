@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Tue Feb 23 10:31:40 2016 Samuel
-** Last update Wed Mar 16 11:17:57 2016 Lucas Villeneuve
+** Last update Thu Mar 17 10:45:39 2016 Lucas Villeneuve
 */
 
 #ifndef MY_H_
@@ -49,6 +49,8 @@ typedef struct		s_tetris
   int			checker;
   int			x;
   int			y;
+  int			next;
+  int			tet;
 }			t_tetris;
 
 typedef struct		s_tetrimino
@@ -84,7 +86,7 @@ void	fall_letter(char **map, t_tetris *tetris, t_keybinds *keybinds);
 void	display_map_tetris(char **map, t_tetris *tetris);
 void	init_keybinds(t_keybinds *keybinds);
 void	init_keybinds2(t_keybinds *keybinds);
-void	menu(t_keybinds *keybinds, t_tetris *tetris);
+void	menu(t_keybinds *keybinds, t_tetris *tetris, t_tetrimino *tetrimino);
 void	loop_game(char **map, t_tetris *tetris, t_tetrimino *tetrimino, t_keybinds *keybinds);
 void	init_screen(t_tetris *tetris, char **map, t_tetrimino *tetrimino, t_keybinds *keybinds);
 void	delete_line(char **map, t_tetris *tetris);
@@ -103,7 +105,7 @@ int	check_winsz(struct winsize *size, t_tetris *tetris);
 int	my_printf(const char *format, ...);
 int	map_size_col(char *tmp, char *a, t_keybinds *keybinds, int pos);
 int	collision(char **map, t_tetrimino *tetrimino, int x, int y);
-int	fall_tetrimino(char **map, t_tetris *tetris, t_tetrimino tetrimino, t_keybinds *keybinds);
+int	fall_tetrimino(char **map, t_tetris *tetris, t_tetrimino *tetrimino, t_keybinds *keybinds);
 char	*take_name(char *name, char *str);
 char	*epurstr(char *str);
 char    *my_strcpy(char *dest, char *src);
