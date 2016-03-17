@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Mon Mar  7 21:15:00 2016 Samuel
-** Last update Tue Mar  8 09:22:47 2016 Samuel
+** Last update Thu Mar 17 15:49:20 2016 Samuel
 */
 
 #include "my.h"
@@ -66,7 +66,6 @@ int		check_if_term_exists(char **ae)
   int		ret;
   int		i;
 
-  /* setenv("TERM", "LOL", 1); */
   size_env = size_of_env(ae);
   if ((term = malloc(sizeof(char) * size_env)) == NULL)
     return (1);

@@ -5,48 +5,71 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Mon Feb 29 19:18:33 2016 Samuel
-** Last update Fri Mar 11 17:48:23 2016 Samuel
+** Last update Thu Mar 17 20:29:29 2016 Samuel
 */
 
-#include "my.h"
 #include <stdlib.h>
+#include <ncurses.h>
+#include "my.h"
+#include <term.h>
+
+void	init_keybinds3(t_keybinds *keybinds)
+{
+  char	*s;
+
+  if ((keybinds->kd = malloc(sizeof(char) * 3)) == NULL)
+    return ;
+  s = tigetstr("kcud1");
+  keybinds->kd[0] = s[0];
+  keybinds->kd[1] = s[1];
+  keybinds->kd[2] = s[2];
+  keybinds->kd[3] = '\0';
+  if ((keybinds->kq = malloc(sizeof(char) * 3)) == NULL)
+    return ;
+  init_keybinds2(keybinds);
+}
 
 void	init_keybinds2(t_keybinds *keybinds)
 {
   keybinds->kq[0] = 'q';
+  keybinds->kq[1]= '\0';
   if ((keybinds->kp = malloc(sizeof(char) * 3)) == NULL)
     return ;
-  keybinds->kp[0] = 'p';
+  keybinds->kp[0] = ' ';
+  keybinds->kp[1] = '\0';
   keybinds->next = 1;
   keybinds->level = 1;
   keybinds->row = 20;
   keybinds->col = 10;
   keybinds->debug = 0;
+  keybinds->help = 0;
 }
 
 void	init_keybinds(t_keybinds *keybinds)
 {
+  char	*s;
+
+  check_term(keybinds->term);
   if ((keybinds->kl = malloc(sizeof(char) * 3)) == NULL)
     return ;
-  keybinds->kl[0] = 27;
-  keybinds->kl[1] = 'O';
-  keybinds->kl[2] = 'D';
+  s = tigetstr("kcub1");
+  keybinds->kl[0] = s[0];
+  keybinds->kl[1] = s[1];
+  keybinds->kl[2] = s[2];
+  keybinds->kl[3] = '\0';
   if ((keybinds->kr = malloc(sizeof(char) * 3)) == NULL)
     return ;
-  keybinds->kr[0] = 27;
-  keybinds->kr[1] = 'O';
-  keybinds->kr[2] = 'C';
+  s = tigetstr("kcuf1");
+  keybinds->kr[0] = s[0];
+  keybinds->kr[1] = s[1];
+  keybinds->kr[2] = s[2];
+  keybinds->kr[3] = '\0';
   if ((keybinds->kt = malloc(sizeof(char) * 3)) == NULL)
     return ;
-  keybinds->kt[0] = 27;
-  keybinds->kt[1] = 'O';
-  keybinds->kt[2] = 'A';
-  if ((keybinds->kd = malloc(sizeof(char) * 3)) == NULL)
-    return ;
-  keybinds->kd[0] = 27;
-  keybinds->kd[1] = 'O';
-  keybinds->kd[2] = 'B';
-  if ((keybinds->kq = malloc(sizeof(char) * 3)) == NULL)
-    return ;
-  init_keybinds2(keybinds);
+  s = tigetstr("kcuu1");
+  keybinds->kt[0] = s[0];
+  keybinds->kt[1] = s[1];
+  keybinds->kt[2] = s[2];
+  keybinds->kt[3] = '\0';
+  init_keybinds3(keybinds);
 }

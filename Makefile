@@ -5,7 +5,7 @@
 ## Login   <samuel@epitech.net>
 ## 
 ## Started on  Tue Feb 23 10:20:42 2016 Samuel
-## Last update Wed Mar 16 11:16:22 2016 Lucas Villeneuve
+## Last update Thu Mar 17 20:09:11 2016 Samuel
 ##
 
 NAME	=	tetris
@@ -33,8 +33,12 @@ SRC	=	src/main.c 			\
 		src/print_the_keys2.c		\
 		src/write_to_keybind.c		\
 		src/write_to_keybind2.c		\
+		src/write_to_keybind3.c	\
 		src/map_size_detect.c		\
 		src/menu.c			\
+		src/error.c			\
+		src/term_check.c		\
+		src/reset.c			\
 
 OBJ	=	$(SRC:.c=.o)
 

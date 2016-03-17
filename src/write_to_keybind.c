@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Mon Feb 29 17:49:25 2016 Samuel
-** Last update Fri Mar 11 17:12:37 2016 Samuel
+** Last update Thu Mar 17 20:21:21 2016 Samuel
 */
 
 #include "my.h"
@@ -26,7 +26,7 @@ void	put_right(t_keybinds *keybinds, char *word)
 {
   if (word[0] == '^' && word[1]== '[')
     {
-      keybinds->kr[0] =27;
+      keybinds->kr[0] = 27;
       keybinds->kr[1] = 'O';
       keybinds->kr[2] = word[3];
     }
@@ -38,7 +38,7 @@ void	put_turn(t_keybinds *keybinds, char *word)
 {
   if (word[0] == '^' && word[1]== '[')
     {
-      keybinds->kt[0] =27;
+      keybinds->kt[0] = 27;
       keybinds->kt[1] = 'O';
       keybinds->kt[2] = word[3];
     }

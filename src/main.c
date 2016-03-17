@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Tue Feb 23 10:27:54 2016 Samuel
-** Last update Tue Mar 15 14:08:04 2016 Lucas Villeneuve
+** Last update Thu Mar 17 20:25:31 2016 Samuel
 */
 
 #include <ncurses.h>
@@ -13,31 +13,13 @@
 #include <sys/ioctl.h>
 #include <stdlib.h>
 #include "my.h"
+#include <term.h>
 
-int			get_input(t_keybinds *keybinds, int j)
-{
-  char			buffer[5];
-
-  buffer[0] = '\0';
-  buffer[1] = '\0';
-  buffer[2] = '\0';
-  buffer[3] = '\0';
-  buffer[4] = '\0';
-  buffer[5] = '\0';
-  if ((read(0, buffer, 5)) == 0)
-    return (1);
-  if ((my_strcmp(buffer, keybinds->kl)) == 0 && j > 1)
-    j--;
-  else if ((my_strcmp(buffer, keybinds->kr)) == 0)
-    j++;
-  return (j);
-}
-
-void			init_screen(t_tetris *tetris, char **map, t_tetrimino *tetrimino, t_keybinds *keybinds)
+void			init_screen(t_tetris *tetris)
 {
   struct winsize	size;
 
-  tetris->sleep = 120000;
+  tetris->sleep = 130000;
   tetris->checker = 0;
   tetris->high_score = 0;
   tetris->score = 0;
@@ -50,8 +32,6 @@ void			init_screen(t_tetris *tetris, char **map, t_tetrimino *tetrimino, t_keybi
   curs_set(false);
   ioctl(0, TIOCGWINSZ, &size);
   check_winsz(&size, tetris);
-  loop_game(map, tetris, tetrimino, keybinds);
-  endwin();
 }
 
 void	print_help(char *str)
@@ -71,43 +51,40 @@ void	print_help(char *str)
   exit(1);
 }
 
-void		init_game(int debug, t_tetris *tetris, t_keybinds keybinds)
+void		init_game(t_tetris *tetris, t_keybinds *keybinds)
 {
   char		**map;
   t_tetrimino	*tetrimino;
 
-  tetris->map_width = keybinds.col;
-  tetris->map_height = keybinds.row;
-  if (debug == true)
-    tetrimino = debug_mode(tetris, &keybinds);
+  tetris->map_width = keybinds->col;
+  tetris->map_height = keybinds->row;
+  if (keybinds->debug == 1)
+    tetrimino = debug_mode(tetris, keybinds);
   else
     tetrimino = ini_load(tetris);
   map = create_map(tetris);
-  init_screen(tetris, map, tetrimino, &keybinds);
+  init_screen(tetris);
+  loop_game(map, tetris, tetrimino, keybinds);
 }
 
-int		main(int argc, char **argv)
+int		main(int argc, char **argv, char **ae)
 {
-  int		i;
   t_tetris	*tetris;
   t_keybinds	keybinds;
-  bool		debug;
 
+  check_env(ae, &keybinds);
+  keybinds.av = argv[0];
   if ((tetris = malloc(sizeof(t_tetris))) == NULL)
     return (1);
   init_keybinds(&keybinds);
   if (argc != 1)
     compare_args_for_keybind(argc, argv, &keybinds);
-  debug = false;
-  i = 1;
-  while (i < argc)
+  if (keybinds.help == 1)
     {
-      if (my_strcmp(argv[i], "--help") == 0)
-	print_help(argv[0]);
-      else if (my_strcmp(argv[i], "--debug") == 0 || my_strcmp(argv[i], "-d") == 0)
-	debug = true;
-      i++;
-    }
-  init_game(debug, tetris, keybinds);
+      print_help(argv[0]);
+      endwin();
+      exit(0);
+    }  
+  init_game(tetris, &keybinds);
   return (0);
 }
