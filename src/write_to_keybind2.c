@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Mon Feb 29 17:51:01 2016 Samuel
-** Last update Fri Mar 11 17:13:55 2016 Samuel
+** Last update Fri Mar 18 09:26:55 2016 Samuel
 */
 
 #include "my.h"
@@ -15,7 +15,7 @@ void	put_pause(t_keybinds *keybinds, char *word)
   if (word[0] == '^' && word[1] == '[')
     {
       keybinds->kp[0] = 27;
-      keybinds->kp[1] = 'O';
+      keybinds->kp[1] = word[2];
       keybinds->kp[2] = word[3];
     }
   else
