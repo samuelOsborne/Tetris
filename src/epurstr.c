@@ -5,7 +5,7 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Thu Jan 21 10:08:48 2016 Lucas Villeneuve
-** Last update Thu Mar  3 14:23:12 2016 Lucas Villeneuve
+** Last update Fri Mar 18 11:19:15 2016 Lucas Villeneuve
 */
 
 #include <stdlib.h>
@@ -48,5 +48,36 @@ char	*epurstr(char *str)
     i++;
   tmp = loop_epurstr(str, tmp, i, j);
   free(str);
+  return (tmp);
+}
+
+char	*epurend(char *str)
+{
+  char	*tmp;
+  int	i;
+  int	j;
+
+  if ((tmp = malloc(my_strlen(str) + 1)) == NULL)
+    return (NULL);
+  i = 0;
+  j = 0;
+  while (str[i])
+    {
+      if (str[i] != ' ')
+	tmp[j++] = str[i++];
+      else
+	{
+	  while (str[i] && str[i] == ' ')
+	    i++;
+	  if (str[i])
+	    tmp[j++] = ' ';
+	  else
+	    {
+	      tmp[j] = 0;
+	      return (tmp);
+	    }
+	}
+    }
+  tmp[j] = 0;
   return (tmp);
 }

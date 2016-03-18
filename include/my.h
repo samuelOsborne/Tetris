@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Tue Feb 23 10:31:40 2016 Samuel
-** Last update Thu Mar 17 20:47:41 2016 Samuel
+** Last update Fri Mar 18 11:19:55 2016 Lucas Villeneuve
 */
 
 #ifndef MY_H_
@@ -125,6 +125,7 @@ int	fall_tetrimino(char **map, t_tetris *tetris, t_tetrimino *tetrimino, t_keybi
 char	*get_char(char *a);
 char	*take_name(char *name, char *str);
 char	*epurstr(char *str);
+char	*epurend(char *str);
 char    *my_strcpy(char *dest, char *src);
 char	*my_strcat(char *dest, char *src);
 char	**create_map(t_tetris *tetris);

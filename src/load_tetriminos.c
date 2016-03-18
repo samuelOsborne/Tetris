@@ -5,7 +5,7 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Tue Mar  1 12:39:58 2016 Lucas Villeneuve
-** Last update Fri Mar 18 10:24:58 2016 Lucas Villeneuve
+** Last update Fri Mar 18 11:18:28 2016 Lucas Villeneuve
 */
 
 #include <stdlib.h>
@@ -41,7 +41,7 @@ int	fill_tab_tetrimino(t_tetrimino *tetrimino, int fd, bool debug, int i)
   i = 0;
   if (debug == true)
     while (i < tetrimino->height)
-      my_printf("%s\n", tetrimino->piece[i++]);
+      my_printf("%s\n", epurend(tetrimino->piece[i++]));
   return (0);
 }
 
