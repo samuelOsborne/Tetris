@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Mon Feb 29 19:18:33 2016 Samuel
-** Last update Fri Mar 18 10:21:03 2016 Samuel
+** Last update Fri Mar 18 10:34:29 2016 Samuel
 */
 
 #include <stdlib.h>
@@ -49,7 +49,6 @@ void	init_keybinds(t_keybinds *keybinds)
 {
   char	*s;
 
-  printf("%s\n", keybinds->term);
   check_term(keybinds->term);
   if ((keybinds->kl = malloc(sizeof(char) * 3)) == NULL)
     return ;

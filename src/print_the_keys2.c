@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Mon Mar  7 11:24:07 2016 Samuel
-** Last update Fri Mar 11 17:05:30 2016 Samuel
+** Last update Fri Mar 18 13:08:52 2016 Samuel
 */
 
 #include "my.h"
@@ -13,7 +13,7 @@
 void		check_and_print_keysl(t_keybinds *keybinds)
 {
   if (keybinds->kl[0] == 27)
-    my_printf("Key Left : %s%s\n", "^EO", keybinds->kl);
+    my_printf("Key Left : %s%c\n", "^EO", keybinds->kl[2]);
   else if (my_strcmp(keybinds->kl, " ") == 0)
     my_printf("Key Left : (space)\n");
   else
