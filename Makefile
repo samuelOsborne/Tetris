@@ -5,7 +5,7 @@
 ## Login   <samuel@epitech.net>
 ## 
 ## Started on  Tue Feb 23 10:20:42 2016 Samuel
-## Last update Fri Mar 18 10:20:49 2016 Samuel
+## Last update Fri Mar 18 13:54:48 2016 Samuel
 ##
 
 NAME	=	tetris
@@ -39,6 +39,7 @@ SRC	=	src/main.c 			\
 		src/error.c			\
 		src/term_check.c		\
 		src/reset.c			\
+		src/error2.c			\
 
 OBJ	=	$(SRC:.c=.o)
 

@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Tue Feb 23 10:27:54 2016 Samuel
-** Last update Fri Mar 18 10:54:21 2016 Lucas Villeneuve
+** Last update Fri Mar 18 13:56:50 2016 Samuel
 */
 
 #include <ncurses.h>
@@ -72,9 +72,10 @@ int		main(int argc, char **argv, char **ae)
   t_tetris	*tetris;
   t_keybinds	keybinds;
 
-  if (ae[0] == NULL)
-    return (1);
+  keybinds.term = NULL;
   check_env(ae, &keybinds);
+  if (keybinds.term == NULL)
+    error_env();
   keybinds.av = argv[0];
   if ((tetris = malloc(sizeof(t_tetris))) == NULL)
     return (1);

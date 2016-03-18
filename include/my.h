@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Tue Feb 23 10:31:40 2016 Samuel
-** Last update Fri Mar 18 11:19:55 2016 Lucas Villeneuve
+** Last update Fri Mar 18 13:54:19 2016 Samuel
 */
 
 #ifndef MY_H_
@@ -104,6 +104,7 @@ void	print_help(char *str);
 void	check_if_correct(char *tmp, t_keybinds *keybinds, int i);
 void	my_reset(char *a);
 void	sort_tetrimino(t_tetrimino *tetrimino, int nb);
+void	error_env();
 void	return_char(char a, char *c, t_keybinds *keybinds);
 int	my_strcmp2(char *s1, char *s2, int stop);
 int	find_bind_with_k(t_keybinds *keybinds, char **av, int pos, int ac);

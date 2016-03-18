@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Thu Mar 17 14:52:21 2016 Samuel
-** Last update Fri Mar 18 09:33:08 2016 Samuel
+** Last update Fri Mar 18 13:52:33 2016 Samuel
 */
 
 #include "my.h"
@@ -16,6 +16,8 @@ void		check_term(char *term)
 {
   int		ret;
 
+  if (term == NULL)
+    error_env();
   setupterm(term, 1, &ret);
   if (ret == 0)
     error_term(term);
