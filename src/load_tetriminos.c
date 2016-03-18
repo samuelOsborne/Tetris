@@ -5,7 +5,7 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Tue Mar  1 12:39:58 2016 Lucas Villeneuve
-** Last update Fri Mar 18 11:18:28 2016 Lucas Villeneuve
+** Last update Fri Mar 18 13:23:24 2016 Lucas Villeneuve
 */
 
 #include <stdlib.h>
@@ -17,35 +17,29 @@
 #include "my.h"
 #include "get_next_line.h"
 
-int	fill_tab_tetrimino(t_tetrimino *tetrimino, int fd, bool debug, int i)
+int	fill_tab_tetrimino(t_tetrimino *tetrimino, int fd, int i)
 {
   char	*str;
+  int	store;
 
+  store = 0;
   while ((str = get_next_line(fd)) != NULL)
     {
       if (my_strlen(str) > tetrimino->width && str[my_strlen(str) - 1] != ' ')
-	{
-	  if (debug == true)
-	    my_putstr("Error: Width of the piece is wrong\n");
-	  return (1);
-	}
+	return (1);
       if (i >= tetrimino->height)
-	{
-	  if (debug == true)
-	    my_putstr("Error: Height of the piece is wrong\n");
-	  return (1);
-	}
+	return (1);
+      if (my_strlen(str) > store)
+	store = my_strlen(str);
       my_strcpy(tetrimino->piece[i], str);
       i++;
     }
-  i = 0;
-  if (debug == true)
-    while (i < tetrimino->height)
-      my_printf("%s\n", epurend(tetrimino->piece[i++]));
+  if (store < tetrimino->width)
+    return (1);
   return (0);
 }
 
-int	get_tetrimino(t_tetrimino *tetrimino, int fd, bool debug)
+int	get_tetrimino(t_tetrimino *tetrimino, int fd)
 {
   int	i;
 
@@ -60,13 +54,15 @@ int	get_tetrimino(t_tetrimino *tetrimino, int fd, bool debug)
 	return (1);
       i++;
     }
-  if (fill_tab_tetrimino(tetrimino, fd, debug, 0) == 1)
+  if (fill_tab_tetrimino(tetrimino, fd, 0) == 1)
     return (1);
   return (0);
 }
 
 int	check_value_tetrimino(t_tetrimino *tetrimino, bool debug, int fd)
 {
+  int	i;
+
   get_vars_tetrimino(tetrimino, fd);
   if ((tetrimino->color > 7 || tetrimino->color < 0) || tetrimino->height < 1
       || tetrimino->width < 1)
@@ -75,12 +71,20 @@ int	check_value_tetrimino(t_tetrimino *tetrimino, bool debug, int fd)
 	my_printf("Tetriminos : Name %s : Error\n", tetrimino->name);
       return (1);
     }
+  if (get_tetrimino(tetrimino, fd) == 1)
+    {
+      if (debug == true)
+      	my_printf("Tetriminos : Name %s : Error\n", tetrimino->name);
+      return (1);
+    }
   if (debug == true)
     my_printf("Tetriminos : Name %s : Size %d*%d : Color %d :\n",
 	      tetrimino->name, tetrimino->width, tetrimino->height,
 	      tetrimino->color);
-  if (get_tetrimino(tetrimino, fd, debug) == 1)
-    return (1);
+  i = 0;
+  if (debug == true)
+    while (i < tetrimino->height)
+      my_printf("%s\n", epurend(tetrimino->piece[i++]));
   return (0);
 }
 

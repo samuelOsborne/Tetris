@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Mon Feb 29 22:07:59 2016 Samuel
-** Last update Thu Mar 17 20:49:58 2016 Samuel
+** Last update Fri Mar 18 13:40:08 2016 Lucas Villeneuve
 */
 
 #include <ncurses.h>
@@ -41,7 +41,6 @@ void	show_next_in_map(t_tetrimino *tetrimino)
 	    {
 	      init_pair(10, tetrimino->color, 0);
 	      attron(COLOR_PAIR(10));
-
 	      mvprintw(i + 20, j + 24, "%c", tetrimino->piece[i][j]);
 	      attroff(COLOR_PAIR(10));
 	    }

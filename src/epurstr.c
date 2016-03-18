@@ -5,7 +5,7 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Thu Jan 21 10:08:48 2016 Lucas Villeneuve
-** Last update Fri Mar 18 11:19:15 2016 Lucas Villeneuve
+** Last update Fri Mar 18 12:31:55 2016 Lucas Villeneuve
 */
 
 #include <stdlib.h>
@@ -53,31 +53,13 @@ char	*epurstr(char *str)
 
 char	*epurend(char *str)
 {
-  char	*tmp;
-  int	i;
-  int	j;
+  int	len;
 
-  if ((tmp = malloc(my_strlen(str) + 1)) == NULL)
-    return (NULL);
-  i = 0;
-  j = 0;
-  while (str[i])
+  len = my_strlen(str);
+  while (len - 1 > 0 && str[len - 1] == ' ')
     {
-      if (str[i] != ' ')
-	tmp[j++] = str[i++];
-      else
-	{
-	  while (str[i] && str[i] == ' ')
-	    i++;
-	  if (str[i])
-	    tmp[j++] = ' ';
-	  else
-	    {
-	      tmp[j] = 0;
-	      return (tmp);
-	    }
-	}
+      str[len - 1] = 0;
+      len--;
     }
-  tmp[j] = 0;
-  return (tmp);
+  return (str);
 }
