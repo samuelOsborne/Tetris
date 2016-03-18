@@ -5,7 +5,7 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Tue Mar  1 12:39:58 2016 Lucas Villeneuve
-** Last update Thu Mar 17 18:04:08 2016 Lucas Villeneuve
+** Last update Fri Mar 18 10:24:58 2016 Lucas Villeneuve
 */
 
 #include <stdlib.h>
@@ -23,7 +23,7 @@ int	fill_tab_tetrimino(t_tetrimino *tetrimino, int fd, bool debug, int i)
 
   while ((str = get_next_line(fd)) != NULL)
     {
-      if (my_strlen(str) > tetrimino->width)
+      if (my_strlen(str) > tetrimino->width && str[my_strlen(str) - 1] != ' ')
 	{
 	  if (debug == true)
 	    my_putstr("Error: Width of the piece is wrong\n");
@@ -55,7 +55,7 @@ int	get_tetrimino(t_tetrimino *tetrimino, int fd, bool debug)
   i = 0;
   while (i < tetrimino->height)
     {
-      if ((tetrimino->piece[i] = malloc(tetrimino->width * sizeof(char) + 1))
+      if ((tetrimino->piece[i] = malloc(tetrimino->width * sizeof(char) + 2))
 	  == NULL)
 	return (1);
       i++;
