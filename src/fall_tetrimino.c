@@ -5,14 +5,17 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Fri Mar  4 10:28:56 2016 Lucas Villeneuve
-** Last update Thu Mar 17 10:44:50 2016 Lucas Villeneuve
+** Last update Fri Mar 18 14:41:36 2016 Lucas Villeneuve
 */
+
+
 
 #include <stdlib.h>
 #include <ncurses.h>
 #include <unistd.h>
 #include "my.h"
 #include "get_next_line.h"
+
 
 void	delete_line2(char **map, t_tetris *tetris, int i , int j)
 {

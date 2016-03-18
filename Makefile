@@ -5,7 +5,7 @@
 ## Login   <samuel@epitech.net>
 ## 
 ## Started on  Tue Feb 23 10:20:42 2016 Samuel
-## Last update Fri Mar 18 13:54:48 2016 Samuel
+## Last update Fri Mar 18 15:25:39 2016 Lucas Villeneuve
 ##
 
 NAME	=	tetris
@@ -51,7 +51,7 @@ CC	=	gcc
 
 CFLAGS	=	-Iinclude
 
-CFLAGS	+=	-W -Wall -Wextra -ansi
+CFLAGS	+=	-W -Wall -Wextra -ansi -D_BSD_SOURCE
 
 $(NAME):	$(OBJ)
 			$(CC) -o $(NAME) $(OBJ) $(LDFLAGS)

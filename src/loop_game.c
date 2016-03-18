@@ -5,19 +5,29 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Sat Mar  5 15:00:46 2016 Lucas Villeneuve
-** Last update Thu Mar 17 10:48:20 2016 Lucas Villeneuve
+** Last update Fri Mar 18 15:43:53 2016 Lucas Villeneuve
 */
 
 #include <ncurses.h>
 #include <stdlib.h>
 #include <time.h>
 #include "my.h"
+#include "get_next_line.h"
 
-void	end_game()
+void	end_game(t_keybinds *keybinds)
 {
   mvprintw(15, 15, "GAME OVER");
   refresh();
-  while (1);
+  while (my_strcmp(keybinds->buffer, keybinds->kq) != 0)
+    {
+      my_memset(keybinds->buffer, 5);
+      if ((read(0, keybinds->buffer, 5) == -1))
+	return ;
+      refresh();
+
+    }
+  endwin();
+  exit(1);
 }
 
 void	loop_game(char **map, t_tetris *tetris, t_tetrimino *tetrimino, t_keybinds *keybinds)
@@ -32,7 +42,7 @@ void	loop_game(char **map, t_tetris *tetris, t_tetrimino *tetrimino, t_keybinds 
       tetris->x = tetris->map_width / 2;
       if (fall_tetrimino(map, tetris, tetrimino, keybinds) == 2)
 	{
-	  end_game();
+	  end_game(keybinds);
 	  return ;
 	}
       delete_line(map, tetris);

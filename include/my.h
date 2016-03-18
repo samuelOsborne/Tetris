@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Tue Feb 23 10:31:40 2016 Samuel
-** Last update Fri Mar 18 13:54:19 2016 Samuel
+** Last update Fri Mar 18 15:25:15 2016 Lucas Villeneuve
 */
 
 #ifndef MY_H_
@@ -13,11 +13,12 @@
 
 #ifndef _BSD_SOURCE
 # define _BSD_SOURCE
+#endif /* !_BSD_SOURCE */
 
-#include <sys/ioctl.h>
-#include <stdbool.h>
 #include <unistd.h>
 #include <sys/types.h>
+#include <sys/ioctl.h>
+#include <stdbool.h>
 
 typedef struct          s_keybinds
 {
@@ -114,7 +115,6 @@ int	map_size_detect(char *a, t_keybinds *keybinds);
 int	get_key_bind(char a, t_keybinds *keybinds, char *word);
 int	my_strlen(char *str);
 int	my_getnbr(char *str);
-int	usleep();
 int	get_vars_tetrimino(t_tetrimino *tetrimino, int fd);
 int	mode_non_canonique(int i);
 int	my_strcmp(char *s1, char *s2);
@@ -137,5 +137,4 @@ t_tetrimino	ini_rotate_tetrimino(t_tetrimino tetrimino, char **map, int x, int y
 t_tetrimino	*ini_load(t_tetris *tetris);
 t_tetrimino	*print_tetriminos(t_tetris *tetris, t_tetrimino *str, bool debug);
 
-#endif /* !BSD_SOURCE */
 #endif /* !MY_H_ */
