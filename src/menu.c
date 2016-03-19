@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Mon Feb 29 22:07:59 2016 Samuel
-** Last update Fri Mar 18 13:40:08 2016 Lucas Villeneuve
+** Last update Sat Mar 19 14:02:26 2016 Lucas Villeneuve
 */
 
 #include <ncurses.h>
@@ -74,22 +74,13 @@ void		print_next(t_tetris *tetris, t_tetrimino *tetrimino)
 
 void		print_lines(t_keybinds *keybinds, t_tetris *tetris)
 {
-  char		*high_score;
-  char		*scorec;
-  char		*lines;
-  char		*level;
-
-  lines = "lines";
-  level = "level";
-  high_score = "High Score";
-  scorec = "score";
-  mvprintw(7, 8, high_score);
+  mvprintw(7, 8, "High Score");
   printw("         %d", tetris->high_score);
-  mvprintw(8, 8, scorec);
+  mvprintw(8, 8, "Score");
   printw("              %d", tetris->score);
-  mvprintw(10, 8, lines);
-  printw("              %d", tetris->lines);
-  mvprintw(11, 8, level);
+  mvprintw(10, 8, "Lines");
+  printw("              %d", tetris->nb_lines);
+  mvprintw(11, 8, "Level");
   printw("              %d", keybinds->level);
 }
 
@@ -102,7 +93,7 @@ void		menu(t_keybinds *keybinds, t_tetris *tetris, t_tetrimino *tet)
   if (tetris->checker == 10)
     {
       keybinds->level++;
-      tetris->sleep = tetris->sleep - 100;
+      tetris->time_sleep -= 100;
       tetris->checker = 0;
     }
   print_tetris();

@@ -5,21 +5,21 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Tue Feb 23 10:27:54 2016 Samuel
-** Last update Sat Mar 19 12:30:09 2016 Samuel
+** Last update Sat Mar 19 13:59:52 2016 Lucas Villeneuve
 */
 
 #include <ncurses.h>
 #include <unistd.h>
 #include <sys/ioctl.h>
 #include <stdlib.h>
-#include "my.h"
 #include <term.h>
+#include "my.h"
 
 void			init_screen(t_tetris *tetris)
 {
   struct winsize	size;
 
-  tetris->sleep = 130000;
+  tetris->time_sleep = 130000;
   tetris->checker = 0;
   tetris->high_score = 0;
   tetris->score = 0;

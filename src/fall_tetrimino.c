@@ -5,7 +5,7 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Fri Mar  4 10:28:56 2016 Lucas Villeneuve
-** Last update Fri Mar 18 14:41:36 2016 Lucas Villeneuve
+** Last update Sat Mar 19 14:00:02 2016 Lucas Villeneuve
 */
 
 
@@ -21,8 +21,8 @@ void	delete_line2(char **map, t_tetris *tetris, int i , int j)
 {
   int	tmp;
 
-  tetris->lines = tetris->lines + 1;
-  tetris->checker = tetris->checker + 1;
+  tetris->nb_lines++;
+  tetris->checker++;
   tetris->score = tetris->score + 100;
   tmp = i;
   while (tmp > 1)
@@ -37,7 +37,7 @@ void	delete_line2(char **map, t_tetris *tetris, int i , int j)
     }
 }
 
-void	delete_line(char **map, t_tetris *tetris)
+void	del_line_map(char **map, t_tetris *tetris)
 {
   int	i;
   int	j;
@@ -122,7 +122,7 @@ int	fall_tetrimino(char **map, t_tetris *tetris,
       display_map_tetris(map, tetris);
       show_in_map(&tetrimino[tetris->tet], tetris->x, tetris->y);
       refresh();
-      usleep(tetris->sleep);
+      usleep(tetris->time_sleep);
     }
   return (0);
 }

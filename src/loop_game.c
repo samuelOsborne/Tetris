@@ -5,7 +5,7 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Sat Mar  5 15:00:46 2016 Lucas Villeneuve
-** Last update Fri Mar 18 15:43:53 2016 Lucas Villeneuve
+** Last update Sat Mar 19 13:59:27 2016 Lucas Villeneuve
 */
 
 #include <ncurses.h>
@@ -45,7 +45,7 @@ void	loop_game(char **map, t_tetris *tetris, t_tetrimino *tetrimino, t_keybinds 
 	  end_game(keybinds);
 	  return ;
 	}
-      delete_line(map, tetris);
+      del_line_map(map, tetris);
       refresh();
     }
 }
