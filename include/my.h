@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Tue Feb 23 10:31:40 2016 Samuel
-** Last update Fri Mar 18 15:25:15 2016 Lucas Villeneuve
+** Last update Sat Mar 19 12:59:41 2016 Samuel
 */
 
 #ifndef MY_H_
@@ -123,7 +123,7 @@ int	my_printf(const char *format, ...);
 int	map_size_col(char *tmp, char *a, t_keybinds *keybinds, int pos);
 int	collision(char **map, t_tetrimino *tetrimino, int x, int y);
 int	fall_tetrimino(char **map, t_tetris *tetris, t_tetrimino *tetrimino, t_keybinds *keybinds);
-char	*get_char(char *a);
+char	*get_char(char *a, t_keybinds *keybinds);
 char	*take_name(char *name, char *str);
 char	*epurstr(char *str);
 char	*epurend(char *str);

@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Thu Mar 10 19:59:07 2016 Samuel
-** Last update Sat Mar 19 12:48:15 2016 Samuel
+** Last update Sat Mar 19 13:11:41 2016 Samuel
 */
 
 #include <stdio.h>
@@ -114,7 +114,7 @@ int		parse_for_bind(char *a, t_keybinds *keybinds)
   else if (a[2] == 'k')
     {
       key = a[6];
-      value = get_char(a);
+      value = get_char(a, keybinds);
       get_key_bind(key, keybinds, value);
     }
   else
