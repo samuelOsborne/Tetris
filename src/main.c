@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Tue Feb 23 10:27:54 2016 Samuel
-** Last update Sat Mar 19 10:08:46 2016 Lucas Villeneuve
+** Last update Sat Mar 19 12:30:09 2016 Samuel
 */
 
 #include <ncurses.h>

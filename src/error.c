@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Mon Mar 14 20:28:37 2016 Samuel
-** Last update Thu Mar 17 20:24:59 2016 Samuel
+** Last update Sat Mar 19 12:52:21 2016 Samuel
 */
 
 #include <stdlib.h>
@@ -40,7 +40,9 @@ int	find_bind_with_k(t_keybinds *keybinds, char **av, int pos, int ac)
   char	b;
   char	*word;
 
-  if (av[pos][1] == 'k' && ((pos + 1) < ac))
+  if (av[pos][1] == 'k' && ((pos + 1) < ac) && (av[pos][2] == 'l' 
+	|| av[pos][2] == 'r' || av[pos][2] == 't' || av[pos][2] == 'd' 
+						|| av[pos][2] == 'q' || av[pos][2] == 'p'))
     {
       word = av[pos + 1];
       b = av[pos][2];
@@ -71,6 +73,8 @@ char	*get_char(char *a)
   while (a[i] != '=' && a[i] != '\0')
     i++;
   i++;
+  if (a[i] == '\0')
+    exit(0);
   while (a[i] != '\0')
     {
       ret[j] = a[i];
