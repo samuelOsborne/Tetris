@@ -5,7 +5,7 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Tue Jan 19 15:09:18 2016 Lucas Villeneuve
-** Last update Tue Mar 15 18:10:08 2016 Samuel
+** Last update Sat Mar 19 15:47:10 2016 Samuel
 */
 
 int	my_strcmp2(char *s1, char *s2, int stop)
@@ -20,7 +20,7 @@ int	my_strcmp2(char *s1, char *s2, int stop)
   return (sum);
 }
 
-int     my_strcmp(char *s1, char *s2)
+int	my_strcmp(char *s1, char *s2)
 {
   int   i;
   int   sum;
