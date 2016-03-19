@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Thu Mar 10 19:59:07 2016 Samuel
-** Last update Sat Mar 19 18:39:39 2016 Samuel
+** Last update Sat Mar 19 18:45:07 2016 Samuel
 */
 
 #include <stdio.h>
@@ -127,13 +127,17 @@ int		compare_args_for_keybind(int ac, char **av, t_keybinds *keybinds)
   int		i;
 
   i = 1;
-  while (i != ac)
+  while (i < ac)
     {
       if (av[i][0] == '-' && av[i][1] == '-')
 	parse_for_bind(av[i], keybinds);
       else if (av[i][0] == '-' && (av[i][1] == 'k' || av[i][1] == 'w'
 				   || av[i][1] == 'l' || av[i][1] == 'd'))
-	find_bind_with_k(keybinds, av, i, ac);
+	{
+	  find_bind_with_k(keybinds, av, i, ac);
+	  if (av[i][1] == 'k')
+            i++;
+	}
       else if (av[i][0] == '-' && av[i][1] != 'k' && av[i][1] != 'w'
 	       && av[i][1] != 'l' && av[i][1] != 'd')
 	error(av[i], keybinds);
