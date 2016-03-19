@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Tue Feb 23 10:27:54 2016 Samuel
-** Last update Fri Mar 18 15:46:37 2016 Lucas Villeneuve
+** Last update Sat Mar 19 10:08:46 2016 Lucas Villeneuve
 */
 
 #include <ncurses.h>
@@ -23,19 +23,15 @@ void			init_screen(t_tetris *tetris)
   tetris->checker = 0;
   tetris->high_score = 0;
   tetris->score = 0;
-  printf("Toast3\n");
   initscr();
-  printf("Toast4\n");
   mode_non_canonique(0);
   clear();
   noecho();
   start_color();
   keypad(stdscr, true);
   curs_set(false);
-  printf("Toast5\n");
   ioctl(0, TIOCGWINSZ, &size);
   check_winsz(&size, tetris);
-  printf("Toast6\n");
 }
 
 void	print_help(char *str)
@@ -77,13 +73,9 @@ void		init_game(t_tetris *tetris, t_keybinds *keybinds)
 	}
       i++;
     }
-  printf("Toast\n");
   map = create_map(tetris);
-  printf("Toast2\n");
   init_screen(tetris);
-  printf("Toast7\n");
   loop_game(map, tetris, tetrimino, keybinds);
-  printf("Toast8\n");
 }
 
 int		main(int argc, char **argv, char **ae)
