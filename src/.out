@@ -1,0 +1,11 @@
+void	put_quit(t_keybinds *keybinds, char *word)
+{
+  if (word[0] == '^' && word[1]== '[')
+    {
+      keybinds->kq[0] = 27;
+      keybinds->kq[1] = word[2];
+      keybinds->kq[2] = word[3];
+    }
+  else
+    keybinds->kq = word;
+}
