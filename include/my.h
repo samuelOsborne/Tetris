@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Tue Feb 23 10:31:40 2016 Samuel
-** Last update Sat Mar 19 13:58:28 2016 Lucas Villeneuve
+** Last update Sat Mar 19 15:10:15 2016 Samuel
 */
 
 #ifndef MY_H_
@@ -93,7 +93,7 @@ void	init_keybinds(t_keybinds *keybinds);
 void	init_keybinds2(t_keybinds *keybinds);
 void	menu(t_keybinds *keybinds, t_tetris *tetris, t_tetrimino *tetrimino);
 void	loop_game(char **map, t_tetris *tetris, t_tetrimino *tetrimino, t_keybinds *keybinds);
-void	init_screen(t_tetris *tetris);
+void	init_screen(t_tetris *tetris, t_keybinds *keybinds);
 void	init_game(t_tetris *tetris, t_keybinds *keybinds);
 void	del_line_map(char **map, t_tetris *tetris);
 void	pause_game(t_keybinds *keybinds);

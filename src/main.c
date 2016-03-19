@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Tue Feb 23 10:27:54 2016 Samuel
-** Last update Sat Mar 19 13:59:52 2016 Lucas Villeneuve
+** Last update Sat Mar 19 15:10:43 2016 Samuel
 */
 
 #include <ncurses.h>
@@ -15,11 +15,11 @@
 #include <term.h>
 #include "my.h"
 
-void			init_screen(t_tetris *tetris)
+void			init_screen(t_tetris *tetris, t_keybinds *keybinds)
 {
   struct winsize	size;
 
-  tetris->time_sleep = 130000;
+  tetris->time_sleep = 125000 / keybinds->level;
   tetris->checker = 0;
   tetris->high_score = 0;
   tetris->score = 0;
@@ -74,7 +74,7 @@ void		init_game(t_tetris *tetris, t_keybinds *keybinds)
       i++;
     }
   map = create_map(tetris);
-  init_screen(tetris);
+  init_screen(tetris, keybinds);
   loop_game(map, tetris, tetrimino, keybinds);
 }
 
