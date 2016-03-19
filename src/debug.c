@@ -5,7 +5,7 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Mon Feb 29 16:12:27 2016 Lucas Villeneuve
-** Last update Thu Mar 17 18:04:25 2016 Lucas Villeneuve
+** Last update Sat Mar 19 14:19:02 2016 Lucas Villeneuve
 */
 
 #include <unistd.h>
@@ -92,7 +92,8 @@ int		count_tetriminos()
   if ((dir = opendir("tetriminos")) != NULL)
     {
       while ((ent = readdir(dir)) != NULL)
-	if (ent->d_name[0] != '.' && (take_name(ent->d_name, ".tetrimino") != NULL))
+	if (ent->d_name[0] != '.'
+	    && (take_name(ent->d_name, ".tetrimino") != NULL))
 	  i++;
       closedir(dir);
     }

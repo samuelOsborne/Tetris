@@ -5,7 +5,7 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Mon Mar  7 11:00:17 2016 Lucas Villeneuve
-** Last update Tue Mar 15 17:21:48 2016 Lucas Villeneuve
+** Last update Sat Mar 19 14:16:54 2016 Lucas Villeneuve
 */
 
 #include <stdlib.h>
@@ -34,7 +34,8 @@ void	rotate_tetrimino(t_tetrimino *tetrimino, t_tetrimino *new_tetrimino)
     }
 }
 
-t_tetrimino	ini_rotate_tetrimino(t_tetrimino tetrimino, char **map, int x, int y)
+t_tetrimino	ini_rotate_tetrimino(t_tetrimino tetrimino,
+				     char **map, int x, int y)
 {
   t_tetrimino	new_tetrimino;
   int		i;
@@ -42,7 +43,8 @@ t_tetrimino	ini_rotate_tetrimino(t_tetrimino tetrimino, char **map, int x, int y
   new_tetrimino.width = tetrimino.height;
   new_tetrimino.height = tetrimino.width;
   new_tetrimino.color = tetrimino.color;
-  if ((new_tetrimino.piece = malloc(new_tetrimino.height * sizeof(char *))) == NULL)
+  if ((new_tetrimino.piece = malloc(new_tetrimino.height
+				    * sizeof(char *))) == NULL)
     return (tetrimino);
   i = 0;
   while (i < new_tetrimino.height)

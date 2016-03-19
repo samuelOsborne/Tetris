@@ -5,7 +5,7 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Wed Feb 24 11:34:54 2016 Lucas Villeneuve
-** Last update Mon Mar 14 08:34:45 2016 Samuel
+** Last update Sat Mar 19 14:19:27 2016 Lucas Villeneuve
 */
 
 #include <stdlib.h>
@@ -27,4 +27,4 @@ int	check_winsz(struct winsize *size, t_tetris *tetris)
       exit(1);
     }
   return (0);
-} 
+}

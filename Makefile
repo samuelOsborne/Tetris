@@ -5,7 +5,7 @@
 ## Login   <samuel@epitech.net>
 ## 
 ## Started on  Tue Feb 23 10:20:42 2016 Samuel
-## Last update Fri Mar 18 15:25:39 2016 Lucas Villeneuve
+## Last update Sat Mar 19 14:08:43 2016 Lucas Villeneuve
 ##
 
 NAME	=	tetris
@@ -18,6 +18,7 @@ SRC	=	src/main.c 			\
 		src/load_tetriminos2.c		\
 		src/fall_tetrimino.c		\
 		src/fall_tetrimino2.c		\
+		src/delete_lines.c		\
 		src/pause.c			\
 		src/loop_game.c			\
 		src/get_next_line.c		\

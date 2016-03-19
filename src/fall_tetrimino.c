@@ -5,7 +5,7 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Fri Mar  4 10:28:56 2016 Lucas Villeneuve
-** Last update Sat Mar 19 14:00:02 2016 Lucas Villeneuve
+** Last update Sat Mar 19 14:08:27 2016 Lucas Villeneuve
 */
 
 
@@ -15,50 +15,6 @@
 #include <unistd.h>
 #include "my.h"
 #include "get_next_line.h"
-
-
-void	delete_line2(char **map, t_tetris *tetris, int i , int j)
-{
-  int	tmp;
-
-  tetris->nb_lines++;
-  tetris->checker++;
-  tetris->score = tetris->score + 100;
-  tmp = i;
-  while (tmp > 1)
-    {
-      j = 1;
-      while (j < tetris->map_width + 1)
-	{
-	  map[tmp][j] = map[tmp - 1][j];
-	  j++;
-	}
-      tmp--;
-    }
-}
-
-void	del_line_map(char **map, t_tetris *tetris)
-{
-  int	i;
-  int	j;
-  int	count;
-
-  i = 1;
-  while (i < tetris->map_height)
-    {
-      j = 1;
-      count = 0;
-      while (j < tetris->map_width + 1)
-	{
-	  if (map[i][j] != ' ')
-	    count++;
-	  j++;
-	}
-      if (count == tetris->map_width)
-	delete_line2(map, tetris, i, j);
-      i++;
-    }
-}
 
 int	finish_fall(char **map, t_tetrimino *tetrimino, t_tetris *tetris, int col)
 {

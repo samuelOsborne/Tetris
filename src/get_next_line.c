@@ -5,11 +5,11 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Wed Jan 13 14:32:52 2016 Lucas Villeneuve
-** Last update Wed Feb 10 17:18:23 2016 Lucas Villeneuve
+** Last update Sat Mar 19 14:18:24 2016 Lucas Villeneuve
 */
 
-#include "get_next_line.h"
 #include <unistd.h>
+#include "get_next_line.h"
 
 int	my_strlen(char *str)
 {

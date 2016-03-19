@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Tue Feb 23 10:27:54 2016 Samuel
-** Last update Sat Mar 19 15:10:43 2016 Samuel
+** Last update Sat Mar 19 14:14:17 2016 Lucas Villeneuve
 */
 
 #include <ncurses.h>
@@ -44,7 +44,8 @@ void	print_help(char *str)
   my_putstr("  -kt --key-turn={K}\tTurn tetrimino with key K\n");
   my_putstr("  -kd --key-drop={K}\tSet default DROP on key K\n");
   my_putstr("  -kq --key-quit={K}\tQuit program when press key K\n");
-  my_putstr("  -kp --key-pause={K}\tPause and restart game when press key K\n");
+  my_putstr("  -kp --key-pause={K}\t");
+  my_putstr("Pause and restart game when press key K\n");
   my_putstr("  --map-size={row,col}\tSet game size at row, col\n");
   my_putstr("  -w --without-next\tHide next tetrimino\n");
   my_putstr("  -d --debug\t\tDebug mode\n");
@@ -66,7 +67,8 @@ void		init_game(t_tetris *tetris, t_keybinds *keybinds)
   i = 0;
   while (i < tetris->nb)
     {
-      if (tetrimino[i].width > tetris->map_width || tetrimino[i].height > tetris->map_height)
+      if (tetrimino[i].width > tetris->map_width
+	  || tetrimino[i].height > tetris->map_height)
 	{
 	  my_printf("%s got value higher than the map\n", tetrimino[i].name);
 	  exit(1);
@@ -98,7 +100,7 @@ int		main(int argc, char **argv, char **ae)
       print_help(argv[0]);
       endwin();
       exit(0);
-    }  
+    }
   init_game(tetris, &keybinds);
   return (0);
 }

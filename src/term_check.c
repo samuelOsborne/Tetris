@@ -5,12 +5,12 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Thu Mar 17 14:52:21 2016 Samuel
-** Last update Fri Mar 18 13:52:33 2016 Samuel
+** Last update Sat Mar 19 14:16:04 2016 Lucas Villeneuve
 */
 
-#include "my.h"
 #include <term.h>
 #include <stdlib.h>
+#include "my.h"
 
 void		check_term(char *term)
 {
@@ -39,14 +39,11 @@ void		check_env(char **ae, t_keybinds *keybinds)
           if (ae[i][2] == 'R')
             if (ae[i][3] == 'M')
               {
-                if ((keybinds->term = malloc(sizeof(char) * my_strlen(ae[i]))) == NULL)
+                if ((keybinds->term = malloc(sizeof(char)
+					     * my_strlen(ae[i]))) == NULL)
                   return ;
                 while (j != my_strlen(ae[i]))
-                  {
-                    keybinds->term[j] = ae[i][k];
-                    j++;
-                    k++;
-                  }
+		  keybinds->term[j++] = ae[i][k++];
               }
       i++;
     }

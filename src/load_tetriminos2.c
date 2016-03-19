@@ -5,7 +5,7 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Mon Mar 14 14:44:35 2016 Lucas Villeneuve
-** Last update Mon Mar 14 14:45:14 2016 Lucas Villeneuve
+** Last update Sat Mar 19 14:17:58 2016 Lucas Villeneuve
 */
 
 #include <stdlib.h>
@@ -51,7 +51,8 @@ char	*take_name(char *name, char *str)
   return (NULL);
 }
 
-void	fill_vars_tetrimino(t_tetrimino *tetrimino, char *str, char *tmp, int i)
+void	fill_vars_tetrimino(t_tetrimino *tetrimino,
+			    char *str, char *tmp, int i)
 {
   int	j;
   int	k;

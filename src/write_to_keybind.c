@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Mon Feb 29 17:49:25 2016 Samuel
-** Last update Fri Mar 18 09:27:30 2016 Samuel
+** Last update Sat Mar 19 14:17:16 2016 Lucas Villeneuve
 */
 
 #include "my.h"
@@ -18,7 +18,7 @@ void	put_left(t_keybinds *keybinds, char *word)
       keybinds->kl[1] = word[2];
       keybinds->kl[2] = word[3];
     }
-  else 
+  else
     keybinds->kl = word;
 }
 

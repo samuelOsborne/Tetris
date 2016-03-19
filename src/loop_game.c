@@ -5,7 +5,7 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Sat Mar  5 15:00:46 2016 Lucas Villeneuve
-** Last update Sat Mar 19 13:59:27 2016 Lucas Villeneuve
+** Last update Sat Mar 19 14:17:32 2016 Lucas Villeneuve
 */
 
 #include <ncurses.h>
@@ -30,7 +30,8 @@ void	end_game(t_keybinds *keybinds)
   exit(1);
 }
 
-void	loop_game(char **map, t_tetris *tetris, t_tetrimino *tetrimino, t_keybinds *keybinds)
+void	loop_game(char **map, t_tetris *tetris,
+		  t_tetrimino *tetrimino, t_keybinds *keybinds)
 {
   srand(time(NULL));
   tetris->next = rand() % tetris->nb;
