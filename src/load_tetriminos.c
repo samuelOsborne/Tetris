@@ -5,7 +5,7 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Tue Mar  1 12:39:58 2016 Lucas Villeneuve
-** Last update Fri Mar 18 13:23:24 2016 Lucas Villeneuve
+** Last update Sat Mar 19 14:30:54 2016 Lucas Villeneuve
 */
 
 #include <stdlib.h>
@@ -93,73 +93,6 @@ int	check_tetrimino(char *file, t_tetrimino *tetrimino)
   if ((tetrimino->name = take_name(file, ".tetrimino")) == NULL)
     return (1);
   return (0);
-}
-
-void		sort_tetrimino(t_tetrimino *tetrimino, int nb)
-{
-  bool		done;
-  int		i;
-  t_tetrimino	tmp;
-
-  done = false;
-  while (done == false)
-    {
-      done = true;
-      i = 0;
-      while (i < nb - 1)
-        {
-  	  if (my_strcmp(tetrimino[i].name, tetrimino[i + 1].name) > 0)
-  	    {
-  	      tmp = tetrimino[i];
-  	      tetrimino[i] = tetrimino[i + 1];
-  	      tetrimino[i + 1] = tmp;
-  	      done = false;
-  	    }
-  	  i++;
-        }
-    }
-}
-
-t_tetrimino	*print_tetriminos(t_tetris *tetris, t_tetrimino *str, bool debug)
-{
-  int	i;
-  int	j;
-  int	nb;
-  int	fd;
-  char	*file;
-  char	*tmp;
-  t_tetrimino *tetrimino;
-
-  i = 0;
-  j = 0;
-  if ((tetrimino = malloc(sizeof(t_tetrimino) * tetris->nb)) == NULL)
-    return (NULL);
-  nb = tetris->nb;
-  while (i < nb)
-    {
-      if ((file = malloc(my_strlen(str[i].name) + 1)) == NULL)
-	return (NULL);
-      if ((tmp = malloc(my_strlen(str[i].name) + my_strlen("tetriminos/")
-			+ my_strlen(".tetrimino") + 1)) == NULL)
-	return (NULL);
-      my_strcpy(file, str[i].name);
-      my_strcpy(tmp, "tetriminos/");
-      file = my_strcat(tmp, file);
-      file = my_strcat(file, ".tetrimino");
-      if ((fd = open(file, O_RDONLY)) == -1)
-      	return (NULL);
-      if (check_value_tetrimino(&str[i], debug, fd) == 1)
-	tetris->nb--;
-      else
-	{
-	  tetrimino[j] = str[i];
-	  j++;
-	}
-      close(fd);
-      free(file);
-      i++;
-    }
-  return (tetrimino);
 }
 
 t_tetrimino	*load_tetrimino(int nb, bool debug, t_tetris *tetris, int i)
