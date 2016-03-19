@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Mon Mar 14 20:28:37 2016 Samuel
-** Last update Sat Mar 19 13:11:13 2016 Samuel
+** Last update Sat Mar 19 15:43:57 2016 Samuel
 */
 
 #include <stdlib.h>
@@ -14,22 +14,27 @@
 
 void	error(char *a, t_keybinds *keybinds)
 {
-  my_printf("%s is an invalid argument.\nHere is a helping hand :\n", a);
+  my_printf("%s is an invalid argument.\n", a);
+  my_printf("Here is a helping hand :\n");
   print_help(keybinds->av);
   exit(0);
 }
 
 void	error_term(char *a)
 {
-  my_printf("%s is an invalid terminal, please have a valid terminal to play.\n", a);
+  my_printf("%s is an invalid terminal, ", a);
+  my_printf("please have a valid terminal to play.\n");
   exit(0);
 }
 
 void	check_for_the_d(char **av, int pos, t_keybinds *keybinds)
 {
-  if ((my_strcmp(av[pos - 1], "-kl")) == 0 || (my_strcmp(av[pos - 1], "-kr")) == 0
-      || (my_strcmp(av[pos - 1], "-kt")) == 0 || (my_strcmp(av[pos - 1], "-kd")) == 0 
-      || (my_strcmp(av[pos - 1], "-kq")) == 0 || (my_strcmp(av[pos - 1], "-kp")) == 0)
+  if ((my_strcmp(av[pos - 1], "-kl")) == 0 ||
+      (my_strcmp(av[pos - 1], "-kr")) == 0
+      || (my_strcmp(av[pos - 1], "-kt")) == 0 ||
+      (my_strcmp(av[pos - 1], "-kd")) == 0
+      || (my_strcmp(av[pos - 1], "-kq")) == 0 ||
+      (my_strcmp(av[pos - 1], "-kp")) == 0)
     keybinds->debug = 0;
   else
     keybinds->debug = 1;
@@ -40,9 +45,10 @@ int	find_bind_with_k(t_keybinds *keybinds, char **av, int pos, int ac)
   char	b;
   char	*word;
 
-  if (av[pos][1] == 'k' && ((pos + 1) < ac) && (av[pos][2] == 'l' 
-	|| av[pos][2] == 'r' || av[pos][2] == 't' || av[pos][2] == 'd' 
-						|| av[pos][2] == 'q' || av[pos][2] == 'p'))
+  if (av[pos][1] == 'k' && ((pos + 1) < ac)
+      && (av[pos][2] == 'l' || av[pos][2] == 'r'
+	  || av[pos][2] == 't' || av[pos][2] == 'd'
+	  || av[pos][2] == 'q' || av[pos][2] == 'p'))
     {
       word = av[pos + 1];
       b = av[pos][2];
