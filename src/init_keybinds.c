@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Mon Feb 29 19:18:33 2016 Samuel
-** Last update Sun Mar 20 17:53:41 2016 Samuel
+** Last update Sun Mar 20 17:58:55 2016 Samuel
 */
 
 #include <stdlib.h>
@@ -17,8 +17,6 @@ void	init_keybinds3(t_keybinds *keybinds)
 {
   char	*s;
 
-  if ((keybinds->kd = malloc(sizeof(char) * 3)) == NULL)
-    return ;
   s = tigetstr("kcud1");
   keybinds->kd = s;
   if ((keybinds->kq = malloc(sizeof(char) * 3)) == NULL)
@@ -47,16 +45,10 @@ void	init_keybinds(t_keybinds *keybinds)
   char	*s;
 
   check_term(keybinds->term);
-  if ((keybinds->kl = malloc(sizeof(char) * 3)) == NULL)
-    return ;
   s = tigetstr("kcub1");
   keybinds->kl = s;
-  if ((keybinds->kr = malloc(sizeof(char) * 3)) == NULL)
-    return ;
   s = tigetstr("kcuf1");
   keybinds->kr = s;
-  if ((keybinds->kt = malloc(sizeof(char) * 3)) == NULL)
-    return ;
   s = tigetstr("kcuu1");
   keybinds->kt = s;
   init_keybinds3(keybinds);
