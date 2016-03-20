@@ -5,7 +5,7 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Tue Mar  1 12:39:58 2016 Lucas Villeneuve
-** Last update Sun Mar 20 15:09:36 2016 Lucas Villeneuve
+** Last update Sun Mar 20 15:35:16 2016 Lucas Villeneuve
 */
 
 #include <stdlib.h>
@@ -64,18 +64,17 @@ int	check_value_tetrimino(t_tetrimino *tetrimino, bool debug, int fd)
 {
   int	i;
 
-  get_vars_tetrimino(tetrimino, fd);
-  if ((tetrimino->color > 7 || tetrimino->color < 0) || tetrimino->height < 1
-      || tetrimino->width < 1)
-    {
-      if (debug == true)
-	my_printf("Tetriminos : Name %s : Error\n", tetrimino->name);
-      return (1);
-    }
-  if (get_tetrimino(tetrimino, fd) == 1)
+  if (get_vars_tetrimino(tetrimino, fd) == 1)
     {
       if (debug == true)
       	my_printf("Tetriminos : Name %s : Error\n", tetrimino->name);
+      return (1);
+    }
+  if (((tetrimino->color > 7 || tetrimino->color < 0) || tetrimino->height < 1
+       || tetrimino->width < 1) || get_tetrimino(tetrimino, fd) == 1)
+    {
+      if (debug == true)
+	my_printf("Tetriminos : Name %s : Error\n", tetrimino->name);
       return (1);
     }
   if (debug == true)

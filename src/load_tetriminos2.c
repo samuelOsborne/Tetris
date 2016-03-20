@@ -5,7 +5,7 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Mon Mar 14 14:44:35 2016 Lucas Villeneuve
-** Last update Sun Mar 20 13:43:15 2016 Lucas Villeneuve
+** Last update Sun Mar 20 15:36:50 2016 Lucas Villeneuve
 */
 
 #include <stdlib.h>
@@ -91,7 +91,7 @@ int	get_vars_tetrimino(t_tetrimino *tetrimino, int fd)
 
   str = get_next_line(fd);
   if (str == NULL)
-    exit(1);
+    return (1);
   str = epurstr(str);
   if ((tmp = malloc(my_strlen(str))) == NULL)
     exit(1);

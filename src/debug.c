@@ -5,7 +5,7 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Mon Feb 29 16:12:27 2016 Lucas Villeneuve
-** Last update Sun Mar 20 13:46:38 2016 Lucas Villeneuve
+** Last update Sun Mar 20 15:36:23 2016 Lucas Villeneuve
 */
 
 #include <unistd.h>
@@ -46,7 +46,6 @@ t_tetrimino	*ini_load(t_tetris *tetris)
   if ((dir = opendir("tetriminos")) != NULL)
     {
       while ((ent = readdir(dir)) != NULL)
-	if (ent->d_name[0] != '.')
 	  i++;
       closedir(dir);
     }
@@ -57,6 +56,8 @@ t_tetrimino	*ini_load(t_tetris *tetris)
   tetrimino = load_tetrimino(i, false, tetris, 0);
   if ((tetrimino = print_tetriminos(tetris, tetrimino, false)) == NULL)
     return (NULL);
+  if (tetris->nb < 1)
+      exit(1);
   return (tetrimino);
 }
 
