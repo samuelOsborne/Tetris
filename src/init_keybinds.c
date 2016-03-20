@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Mon Feb 29 19:18:33 2016 Samuel
-** Last update Sun Mar 20 16:35:33 2016 Samuel Osborne
+** Last update Sun Mar 20 17:53:41 2016 Samuel
 */
 
 #include <stdlib.h>
@@ -21,10 +21,6 @@ void	init_keybinds3(t_keybinds *keybinds)
     return ;
   s = tigetstr("kcud1");
   keybinds->kd = s;
-  /* keybinds->kd[0] = s[0]; */
-  /* keybinds->kd[1] = s[1]; */
-  /* keybinds->kd[2] = s[2]; */
-  /* keybinds->kd[3] = '\0'; */
   if ((keybinds->kq = malloc(sizeof(char) * 3)) == NULL)
     return ;
   init_keybinds2(keybinds);
@@ -55,25 +51,13 @@ void	init_keybinds(t_keybinds *keybinds)
     return ;
   s = tigetstr("kcub1");
   keybinds->kl = s;
-  /* keybinds->kl[0] = s[0]; */
-  /* keybinds->kl[1] = s[1]; */
-  /* keybinds->kl[2] = s[2]; */
-  /* keybinds->kl[3] = '\0'; */
   if ((keybinds->kr = malloc(sizeof(char) * 3)) == NULL)
     return ;
   s = tigetstr("kcuf1");
   keybinds->kr = s;
-  /* keybinds->kr[0] = s[0]; */
-  /* keybinds->kr[1] = s[1]; */
-  /* keybinds->kr[2] = s[2]; */
-  /* keybinds->kr[3] = '\0'; */
   if ((keybinds->kt = malloc(sizeof(char) * 3)) == NULL)
     return ;
   s = tigetstr("kcuu1");
   keybinds->kt = s;
-  /* keybinds->kt[0] = s[0]; */
-  /* keybinds->kt[1] = s[1]; */
-  /* keybinds->kt[2] = s[2]; */
-  /* keybinds->kt[3] = '\0'; */
   init_keybinds3(keybinds);
 }
