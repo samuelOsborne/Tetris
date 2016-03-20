@@ -5,7 +5,7 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Tue Mar  1 12:39:58 2016 Lucas Villeneuve
-** Last update Sun Mar 20 13:40:37 2016 Lucas Villeneuve
+** Last update Sun Mar 20 15:09:36 2016 Lucas Villeneuve
 */
 
 #include <stdlib.h>
@@ -31,7 +31,8 @@ int	fill_tab_tetrimino(t_tetrimino *tetrimino, int fd, int i)
 	return (1);
       if (my_strlen(str) > store)
 	store = my_strlen(str);
-      my_strcpy(tetrimino->piece[i], str);
+      if (my_strcpy_tetrimino(tetrimino->piece[i], str) == NULL)
+	return (1);
       i++;
     }
   if (store < tetrimino->width)

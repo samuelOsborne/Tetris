@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Tue Feb 23 10:31:40 2016 Samuel
-** Last update Sun Mar 20 13:55:09 2016 Lucas Villeneuve
+** Last update Sun Mar 20 15:11:34 2016 Lucas Villeneuve
 */
 
 #ifndef MY_H_
@@ -131,6 +131,7 @@ char	*take_name(char *name, char *str);
 char	*epurstr(char *str);
 char	*epurend(char *str);
 char    *my_strcpy(char *dest, char *src);
+char	*my_strcpy_tetrimino(char *dest, char *src);
 char	*my_strcat(char *dest, char *src);
 char	**create_map(t_tetris *tetris);
 char	*put_void(char *a);
