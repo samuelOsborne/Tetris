@@ -5,7 +5,7 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Tue Mar  1 12:39:58 2016 Lucas Villeneuve
-** Last update Sat Mar 19 14:30:54 2016 Lucas Villeneuve
+** Last update Sun Mar 20 13:40:37 2016 Lucas Villeneuve
 */
 
 #include <stdlib.h>
@@ -107,9 +107,8 @@ t_tetrimino	*load_tetrimino(int nb, bool debug, t_tetris *tetris, int i)
     {
       i = 0;
       while ((ent = readdir(dir)) != NULL)
-	if (ent->d_name[0] != '.')
-	  if (check_tetrimino(ent->d_name, &tetrimino[i]) == 0)
-	    i++;
+	if (check_tetrimino(ent->d_name, &tetrimino[i]) == 0)
+	  i++;
       tetris->nb = i;
       if (i < 1)
 	{

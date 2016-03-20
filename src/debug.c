@@ -5,7 +5,7 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Mon Feb 29 16:12:27 2016 Lucas Villeneuve
-** Last update Sat Mar 19 14:19:02 2016 Lucas Villeneuve
+** Last update Sun Mar 20 13:46:38 2016 Lucas Villeneuve
 */
 
 #include <unistd.h>
@@ -92,9 +92,10 @@ int		count_tetriminos()
   if ((dir = opendir("tetriminos")) != NULL)
     {
       while ((ent = readdir(dir)) != NULL)
-	if (ent->d_name[0] != '.'
-	    && (take_name(ent->d_name, ".tetrimino") != NULL))
-	  i++;
+	{
+	  if (take_name(ent->d_name, ".tetrimino") != NULL)
+	    i++;
+	}
       closedir(dir);
     }
   else
@@ -123,6 +124,11 @@ t_tetrimino	*debug_mode(t_tetris *tetris, t_keybinds *keybinds)
   sort_tetrimino(tetrimino, tetris->nb);
   if ((tetrimino = print_tetriminos(tetris, tetrimino, true)) == NULL)
     return (NULL);
+  if (tetris->nb < 1)
+    {
+      my_putstr("Not enough tetriminos\n");
+      exit(1);
+    }
   my_putstr("Press a key to start Tetris\n");
   mode_non_canonique2(0);
   if (read(0, &buffer, 1) == -1)

@@ -5,19 +5,19 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Mon Mar 14 14:44:35 2016 Lucas Villeneuve
-** Last update Sat Mar 19 14:17:58 2016 Lucas Villeneuve
+** Last update Sun Mar 20 13:43:15 2016 Lucas Villeneuve
 */
 
 #include <stdlib.h>
 #include "my.h"
 #include "get_next_line.h"
 
-char	*fill_tmp(char *name, char *tmp)
+char	*fill_tmp(char *name, char *tmp, int j)
 {
   int	i;
 
   i = 0;
-  while (name[i] && name[i] != '.')
+  while (i < j)
     {
       tmp[i] = name[i];
       i++;
@@ -29,24 +29,27 @@ char	*fill_tmp(char *name, char *tmp)
 char	*take_name(char *name, char *str)
 {
   int	i;
-  int	j;
   char	*tmp;
 
   i = 0;
-  j = 0;
-  while (name[i] && name[i] != '.')
-    i++;
-  while ((name[i] == str[j]) && str[j] && name[i])
+  while (name[i])
     {
-      i++;
-      j++;
-    }
-  if (str[j] == 0)
-    {
-      if ((tmp = malloc(my_strlen(name))) == NULL)
+      while (name[i] != '.')
+	{
+	  i++;
+	  if (name[i] == 0)
+	    return (NULL);
+	}
+      if (my_strcmpn(name, str, i) == 0)
+	{
+	  if ((tmp = malloc(my_strlen(name))) == NULL)
+	    return (NULL);
+	  fill_tmp(name, tmp, i);
+	  return (tmp);
+	}
+      if (name[i + 1] == 0 || name[i + 1] == '.')
 	return (NULL);
-      fill_tmp(name, tmp);
-      return (tmp);
+      i++;
     }
   return (NULL);
 }
@@ -88,16 +91,10 @@ int	get_vars_tetrimino(t_tetrimino *tetrimino, int fd)
 
   str = get_next_line(fd);
   if (str == NULL)
-    {
-      my_putstr("gnl failed\n");
-      return (1);
-    }
+    exit(1);
   str = epurstr(str);
   if ((tmp = malloc(my_strlen(str))) == NULL)
-    {
-      my_putstr("Malloc failed\n");
-      return (1);
-    }
+    exit(1);
   fill_vars_tetrimino(tetrimino, str, tmp, 0);
   return (0);
 }

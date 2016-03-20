@@ -5,8 +5,23 @@
 ** Login   <villen_l@epitech.net>
 ** 
 ** Started on  Tue Jan 19 15:09:18 2016 Lucas Villeneuve
-** Last update Sat Mar 19 15:47:10 2016 Samuel
+** Last update Sun Mar 20 13:55:10 2016 Lucas Villeneuve
 */
+
+int	my_strcmpn(char *s1, char *s2, int i)
+{
+  int	j;
+  int   sum;
+
+  j = 0;
+  while (s1[i] != 0 && s2[j] != 0 && s1[i] == s2[j])
+    {
+      i++;
+      j++;
+    }
+  sum = s1[i] - s2[j];
+  return (sum);
+}
 
 int	my_strcmp2(char *s1, char *s2, int stop)
 {
