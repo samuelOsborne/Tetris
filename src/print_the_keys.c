@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Mon Mar  7 11:21:28 2016 Samuel
-** Last update Fri Mar 18 13:09:51 2016 Samuel
+** Last update Sun Mar 20 16:39:40 2016 Samuel Osborne
 */
 
 #include "my.h"
@@ -13,7 +13,7 @@
 void		check_and_print_keysr(t_keybinds *keybinds)
 {
   if (keybinds->kr[0] == 27)
-    my_printf("Key Right : %s%c\n", "^EO", keybinds->kr[2]);
+    my_printf("Key Right : %s%c%c\n", "^E", keybinds->kr[1], keybinds->kr[2]);
   else if (my_strcmp(keybinds->kr, " ") == 0)
     my_printf("Key Right : (space)\n");
   else
@@ -23,7 +23,7 @@ void		check_and_print_keysr(t_keybinds *keybinds)
 void		check_and_print_keyst(t_keybinds *keybinds)
 {
   if (keybinds->kt[0] == 27)
-    my_printf("Key Turn : %s%c\n", "^EO", keybinds->kt[2]);
+    my_printf("Key Turn : %s%c%c\n", "^E", keybinds->kt[1], keybinds->kt[2]);
   else if (my_strcmp(keybinds->kt, " ") == 0)
     my_printf("Key Turn : (space)\n");
   else
@@ -33,7 +33,7 @@ void		check_and_print_keyst(t_keybinds *keybinds)
 void		check_and_print_keysd(t_keybinds *keybinds)
 {
   if (keybinds->kd[0] == 27)
-    my_printf("Key Drop : %s%c\n", "^EO", keybinds->kd[2]);
+    my_printf("Key Drop : %s%c%c\n", "^E", keybinds->kd[1], keybinds->kd[2]);
   else if (my_strcmp(keybinds->kd, " ") == 0)
     my_printf("Key Drop : (space)\n");
   else
@@ -43,7 +43,7 @@ void		check_and_print_keysd(t_keybinds *keybinds)
 void		check_and_print_keysq(t_keybinds *keybinds)
 {
   if (keybinds->kq[0] == 27)
-    my_printf("Key Quit : %s%c\n", "^EO", keybinds->kq[2]);
+    my_printf("Key Quit : %s%c%c\n", "^E", keybinds->kq[1], keybinds->kq[2]);
   else if (my_strcmp(keybinds->kq, " ") == 0)
     my_printf("Key Quit : (space)\n");
   else
@@ -52,7 +52,7 @@ void		check_and_print_keysq(t_keybinds *keybinds)
 void		check_and_print_keysp(t_keybinds *keybinds)
 {
   if (keybinds->kp[0] == 27)
-    my_printf("Key Pause : %s%c\n", "^EO", keybinds->kp[2]);
+    my_printf("Key Pause : %s%c%c\n", "^E", keybinds->kq[1], keybinds->kp[2]);
   else if (my_strcmp(keybinds->kp, " ") == 0)
     my_printf("Key Pause : (space)\n");
   else

@@ -5,7 +5,7 @@
 ** Login   <samuel@epitech.net>
 ** 
 ** Started on  Tue Feb 23 10:27:54 2016 Samuel
-** Last update Sat Mar 19 14:14:17 2016 Lucas Villeneuve
+** Last update Sun Mar 20 13:55:07 2016 Samuel
 */
 
 #include <ncurses.h>
@@ -85,7 +85,6 @@ int		main(int argc, char **argv, char **ae)
   t_tetris	*tetris;
   t_keybinds	keybinds;
 
-  keybinds.term = NULL;
   check_env(ae, &keybinds);
   if (keybinds.term == NULL)
     error_env();
